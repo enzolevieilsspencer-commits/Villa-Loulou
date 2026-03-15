@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { defaultLocale, locales, getTranslations, type Locale } from '../lib/i18n';
+import { SITE_IMAGES } from '../lib/site-images';
 
 interface Props {
   title: string;
@@ -42,47 +43,50 @@ const baseUrl = Astro.url.origin;
       <slot />
     </main>
     <Footer locale={locale} />
-    <script define:vars={{ locale }}>
+    <script define:vars={{ locale, siteImages: JSON.stringify(SITE_IMAGES) }}>
       (function () {
-        var COOKIE_NAME = 'villa-loulou-locale';
-        var COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 an
-        var pathname = window.location.pathname || '/';
-        var isRoot = pathname === '/' || pathname === '';
+        const COOKIE_NAME = 'villa-loulou-locale';
+        const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 an
+        const pathname = window.location.pathname || '/';
+        const isRoot = pathname === '/' || pathname === '';
 
         function setCookie(value) {
           document.cookie = COOKIE_NAME + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
         }
         function getCookie() {
-          var m = document.cookie.match(new RegExp('(?:^| )' + COOKIE_NAME + '=([^;]+)'));
+          const m = document.cookie.match(new RegExp('(?:^| )' + COOKIE_NAME + '=([^;]+)'));
           return m ? decodeURIComponent(m[1]) : null;
         }
-        function browserLocale() {
-          var lang = (navigator.language || navigator.userLanguage || '').split('-')[0].toLowerCase();
-          if (['en', 'it', 'es', 'ar'].indexOf(lang) >= 0) return lang;
-          if (navigator.languages && navigator.languages.length) {
-            for (var i = 0; i < navigator.languages.length; i++) {
-              lang = navigator.languages[i].split('-')[0].toLowerCase();
-              if (['en', 'it', 'es', 'ar'].indexOf(lang) >= 0) return lang;
-            }
-          }
-          return null;
-        }
 
-        var preferred = getCookie();
-        if (isRoot) {
-          if (preferred && preferred !== 'fr') {
-            window.location.replace('/' + preferred + '/');
-            return;
-          }
-          if (!preferred) {
-            var detected = browserLocale();
-            if (detected) {
-              window.location.replace('/' + detected + '/');
-              return;
-            }
-          }
+        const preferred = getCookie();
+        if (isRoot && preferred && preferred !== 'fr') {
+          window.location.replace('/' + preferred + '/');
+          return;
         }
         setCookie(locale);
+
+        // Préchargement des images du site en arrière-plan pour une navigation fluide
+        function preloadImages() {
+          let urls = [];
+          try { urls = JSON.parse(siteImages); } catch (e) { return; }
+          const base = window.location.origin;
+          const concurrency = 4;
+          for (let i = 0; i < urls.length; i += concurrency) {
+            (function (slice) {
+              setTimeout(function () {
+                for (let j = 0; j < slice.length; j++) {
+                  const img = new Image();
+                  img.src = base + slice[j];
+                }
+              }, (i / concurrency) * 80);
+            })(urls.slice(i, i + concurrency));
+          }
+        }
+        if (document.readyState === 'complete') {
+          setTimeout(preloadImages, 100);
+        } else {
+          window.addEventListener('load', function () { setTimeout(preloadImages, 100); });
+        }
       })();
     </script>
   </body>

@@ -90,6 +90,7 @@ const navLinks = [
   .nav-toggle {
     display: none;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 5px;
     width: 44px;
@@ -114,6 +115,7 @@ const navLinks = [
     height: 2px;
     background: var(--color-text-primary);
     border-radius: 1px;
+    transform-origin: center center;
     transition: transform var(--transition-smooth), opacity var(--transition-smooth);
   }
   .header.is-open .nav-toggle-bar:nth-child(1) {
