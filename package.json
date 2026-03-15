@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
-    "to-ico": "^3.0.0",
+    "to-ico": "^1.1.5",
     "unplugin-icons": "^23.0.1"
   }
 }
