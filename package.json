@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "dev": "concurrently \"node scripts/serve-api.mjs\" \"ASTRO_TELEMETRY_DISABLED=1 astro dev\"",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
+    "concurrently": "^9.0.0",
     "to-ico": "^1.1.5",
     "unplugin-icons": "^23.0.1"
   }

@@ -16,5 +16,10 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss(), Icons({ compiler: "astro", autoInstall: true })],
+    server: {
+      proxy: {
+        '/api': { target: 'http://localhost:3001', changeOrigin: true },
+      },
+    },
   },
 });

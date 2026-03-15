@@ -6,7 +6,7 @@ Site vitrine multilingue pour **Villa Loulou**, villa de charme à Marrakech (4 
 
 - **[Astro](https://astro.build)** 6 — génération statique
 - **[Tailwind CSS](https://tailwindcss.com)** 4 — styles
-- **i18n** — 5 langues (FR, EN, IT, ES, AR) avec détection navigateur
+- **i18n** — 5 langues (FR, EN, IT, ES, AR), français par défaut, choix via le sélecteur
 - **[Leaflet](https://leafletjs.com)** — cartes (localisation villa)
 - **[Flatpickr](https://flatpickr.js.org)** — sélecteur de dates (formulaire contact)
 - **[Resend](https://resend.com)** — envoi d’emails (formulaire contact)
@@ -22,13 +22,13 @@ Site vitrine multilingue pour **Villa Loulou**, villa de charme à Marrakech (4 
 | Español  | `es` | `/es/`          |
 | العربية  | `ar` | `/ar/` (RTL)    |
 
-- La langue est détectée au premier passage sur la page d’accueil (cookie `villa-loulou-locale`).
-- Le choix manuel dans le header est mémorisé pour les visites suivantes.
+- Français par défaut sur `/`. Changement de langue uniquement via le sélecteur dans le header.
 
 ## Structure du projet
 
 ```
 villa-Loulou/
+├── api/              # Vercel serverless (contact → Resend)
 ├── public/           # Assets statiques (images, fonts, favicon)
 ├── src/
 │   ├── components/   # Header, Footer, Logo
@@ -66,7 +66,17 @@ npm preview
 
 ## Formulaire de contact
 
-Le formulaire envoie en POST vers `/api/contact`. Une route API ou un service (ex. Resend) doit traiter l’envoi d’email (à configurer selon l’hébergement).
+Le formulaire envoie en POST vers `/api/contact`. Une **fonction serverless Vercel** (`api/contact.js`) envoie l’email via Resend. Le build Astro reste **statique** (pas d’adaptateur Vercel).
+
+### Variables d’environnement (local et prod)
+
+- **Local** : copier `.env.example` en `.env` et remplir les valeurs. Avec `npm run dev`, un petit serveur expose `/api/contact` et charge le `.env` (tu peux tester le formulaire et recevoir les mails sur `RESEND_TO`).
+- **Vercel** : dans le projet → Settings → Environment Variables, ajouter pour **Production** (et Preview si besoin) :
+  - `RESEND_API_KEY` — clé API Resend
+  - `RESEND_FROM` — expéditeur (ex. `contact@villa-loulou.com`, domaine vérifié dans Resend)
+  - `RESEND_TO` — destinataire(s), séparés par des virgules
+
+Sans ces variables, le formulaire renverra une erreur côté serveur.
 
 ## Design
 

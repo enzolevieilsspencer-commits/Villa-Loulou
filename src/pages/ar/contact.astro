@@ -142,10 +142,21 @@ const privacyUrl = pathForLocale(locale, '/politique-confidentialite/');
       status.textContent = 'Envoi en cours…';
       status.className = 'form-status form-status--pending';
       try {
-        const formData = new FormData(form);
+        const payload = {
+          nom: form.nom?.value ?? '',
+          email: form.email?.value ?? '',
+          telephone: form.telephone?.value ?? '',
+          date_arrivee: form.date_arrivee?.value ?? '',
+          date_depart: form.date_depart?.value ?? '',
+          dates: form.dates?.value ?? '',
+          voyageurs: form.voyageurs?.value ?? '',
+          message: form.message?.value ?? '',
+          website: form.website?.value ?? '',
+        };
         const res = await fetch(form.getAttribute('action') ?? '', {
           method: 'POST',
-          body: formData,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
         const data = await res.json().catch(() => ({}));
         if (res.ok && data.success) {
