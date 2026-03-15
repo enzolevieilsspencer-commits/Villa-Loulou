@@ -17,8 +17,10 @@ const navLinks = [
 ---
 <header class="header" aria-label="Navigation principale">
   <nav class="nav" aria-label="Menu principal">
-    <div class="nav-logo">
-      <Logo variant="dark" href={pathForLocale(locale, '/')} />
+    <div class="nav-left">
+      <div class="nav-logo">
+        <Logo variant="dark" href={pathForLocale(locale, '/')} />
+      </div>
     </div>
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label={t('common.openMenu')} id="nav-toggle" data-close-label={t('common.closeMenu')}>
       <span class="nav-toggle-bar"></span>
@@ -75,6 +77,12 @@ const navLinks = [
     padding: 0.75rem 1.25rem;
     min-height: var(--nav-height);
   }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
   .nav-logo {
     display: block;
     flex-shrink: 0;
@@ -120,7 +128,9 @@ const navLinks = [
   .nav-menu {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2.5rem;
+    flex-shrink: 0;
   }
   .nav-links {
     display: flex;
@@ -185,7 +195,10 @@ const navLinks = [
   .nav-right {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 1rem;
+    flex: 1;
+    min-width: 0;
   }
   .nav-lang-wrap {
     display: flex;
@@ -252,6 +265,10 @@ const navLinks = [
   @media (max-width: 768px) {
     .nav {
       padding: 0.625rem 1rem;
+    }
+    .nav-left,
+    .nav-right {
+      flex: none;
     }
     .nav-toggle {
       display: flex;
