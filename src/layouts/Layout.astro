@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { defaultLocale, locales, getTranslations, type Locale } from '../lib/i18n';
+
+interface Props {
+  title: string;
+  description?: string;
+  locale?: Locale;
+}
+const { title, description = '', locale = defaultLocale } = Astro.props;
+const t = getTranslations(locale);
+
+const pathname = Astro.url.pathname;
+const pathWithoutLocale = pathname.replace(/^\/(en|it|es|ar)(?=\/|$)/, '') || '/';
+const baseUrl = Astro.url.origin;
+---
+<!doctype html>
+<html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    {locales.map((loc) => (
+      <link
+        rel="alternate"
+        hreflang={loc}
+        href={`${baseUrl}${loc === defaultLocale ? pathWithoutLocale : `/${loc}${pathWithoutLocale}`}`}
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}${pathWithoutLocale}`} />
+  </head>
+  <body data-locale={locale}>
+    <a href="#main" class="skip-link">{t('common.skipLink')}</a>
+    <Header locale={locale} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <script define:vars={{ locale }}>
+      (function () {
+        var COOKIE_NAME = 'villa-loulou-locale';
+        var COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 an
+        var pathname = window.location.pathname || '/';
+        var isRoot = pathname === '/' || pathname === '';
+
+        function setCookie(value) {
+          document.cookie = COOKIE_NAME + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
+        }
+        function getCookie() {
+          var m = document.cookie.match(new RegExp('(?:^| )' + COOKIE_NAME + '=([^;]+)'));
+          return m ? decodeURIComponent(m[1]) : null;
+        }
+        function browserLocale() {
+          var lang = (navigator.language || navigator.userLanguage || '').split('-')[0].toLowerCase();
+          if (['en', 'it', 'es', 'ar'].indexOf(lang) >= 0) return lang;
+          if (navigator.languages && navigator.languages.length) {
+            for (var i = 0; i < navigator.languages.length; i++) {
+              lang = navigator.languages[i].split('-')[0].toLowerCase();
+              if (['en', 'it', 'es', 'ar'].indexOf(lang) >= 0) return lang;
+            }
+          }
+          return null;
+        }
+
+        var preferred = getCookie();
+        if (isRoot) {
+          if (preferred && preferred !== 'fr') {
+            window.location.replace('/' + preferred + '/');
+            return;
+          }
+          if (!preferred) {
+            var detected = browserLocale();
+            if (detected) {
+              window.location.replace('/' + detected + '/');
+              return;
+            }
+          }
+        }
+        setCookie(locale);
+      })();
+    </script>
+  </body>
+</html>

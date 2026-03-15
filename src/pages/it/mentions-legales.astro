@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  locale="it"
+  title="Mentions légales — Villa Loulou"
+  description="Mentions légales du site Villa Loulou Marrakech."
+>
+  <section class="section">
+    <div class="container container--narrow legal-prose">
+      <h1 class="page-title">Mentions légales</h1>
+
+      <h2 id="editeur">1. Éditeur du site</h2>
+      <p>
+        Le site <strong>villa-loulou.com</strong> est édité par :<br />
+        [Raison sociale ou nom du propriétaire]<br />
+        Route Sans Nom RÉSIDENCE OLIVERAIE DE CHRIFIA, Marrakech, 40000, Morocco<br />
+        [Téléphone]<br />
+        [Email]
+      </p>
+
+      <h2 id="hebergeur">2. Hébergeur</h2>
+      <p>
+        Le site est hébergé par :<br />
+        [Nom de l'hébergeur]<br />
+        [Adresse]<br />
+        [Site web de l'hébergeur]
+      </p>
+
+      <h2 id="propriete">3. Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (textes, images, visuels, structure) est protégé par le droit d'auteur et les droits de propriété intellectuelle. Toute reproduction ou utilisation non autorisée est interdite sans accord préalable.
+      </p>
+
+      <h2 id="liens">4. Liens</h2>
+      <p>
+        Les liens vers des sites externes sont fournis à titre informatif. Villa Loulou n'exerce aucun contrôle sur le contenu de ces sites et décline toute responsabilité quant à leur contenu ou pratiques.
+      </p>
+
+      <h2 id="credits">5. Crédits</h2>
+      <p>
+        [Crédits photos / design / développement si applicable.]
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container { max-width: 75rem; margin: 0 auto; padding: 0 1.5rem; }
+  .container--narrow { max-width: 40rem; }
+  .section { padding: 4rem 0; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    font-weight: 400;
+    margin: 0 0 1.5rem;
+    color: var(--color-text-primary);
+  }
+  .legal-prose h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 2rem 0 0.75rem;
+    scroll-margin-top: 2rem;
+  }
+  .legal-prose h2:first-of-type { margin-top: 0; }
+  .legal-prose p {
+    margin: 0 0 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: 0.9375rem;
+  }
+  .legal-updated {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+</style>

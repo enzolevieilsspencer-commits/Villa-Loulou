@@ -1,0 +1,106 @@
+@import 'tailwindcss';
+
+/* Villa Loulou — design tokens (terres de Marrakech) */
+:root {
+  --color-sand: #e8e0d5;
+  --color-cream: #f5f1eb;
+  --color-ocre: #c4a574;
+  --color-terracotta: #b8543a;
+  --color-terracotta-dark: #9a4532;
+  --color-gold: #c9a227;
+  --color-text-primary: #2c2520;
+  --color-text-secondary: #5c534a;
+  --color-hero-overlay: rgba(44, 37, 32, 0.12);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --transition-smooth: 300ms ease-out;
+  --nav-height: 4.5rem;
+
+  /* Border radius — souple et cohérent */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Glass */
+  --glass-bg: rgba(245, 241, 235, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-dark-bg: rgba(44, 37, 32, 0.65);
+  --glass-dark-border: rgba(255, 255, 255, 0.12);
+}
+
+/* Polices : Cormorant Garamond à ajouter dans public/fonts/ quand tu les as — fallback Georgia pour l’instant */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background-color: var(--color-cream);
+  }
+  main {
+    padding-top: var(--nav-height);
+  }
+}
+
+/* Responsive mobile — base */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Skip to content — accessibilité */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-terracotta);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.25rem;
+  transition: top var(--transition-smooth);
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Utilitaires glass & radius globaux */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+.glass-dark {
+  background: var(--glass-dark-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-dark-border);
+}
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* i18n RTL — Arabe (Cairo à ajouter dans public/fonts/) */
+@font-face {
+  font-family: "Cairo";
+  src: url("/fonts/Cairo-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+html[dir="rtl"] body {
+  font-family: "Cairo", var(--font-body);
+}

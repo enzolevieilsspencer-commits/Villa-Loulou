@@ -1,0 +1,551 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getTranslations, pathForLocale } from '../../lib/i18n';
+import 'leaflet/dist/leaflet.css';
+
+const locale = 'en';
+const t = getTranslations(locale);
+
+const espaces = [
+  {
+    id: 'salon',
+    label: 'Salon',
+    amenities: ['Chauffage', 'Cheminée', 'Climatisation', 'Système audio', 'Télévision'],
+    images: [
+      { src: '/images/Hall-entree.jpg', alt: 'Hall d\'entrée de la Villa Loulou' },
+      { src: '/images/Salon1.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon2.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon3.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon4.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon5.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon6.jpg', alt: 'Salon Villa Loulou' },
+      { src: '/images/Salon7.jpg', alt: 'Salon Villa Loulou' },
+    ],
+  },
+  {
+    id: 'cuisine',
+    label: 'Cuisine',
+    amenities: ['Réfrigérateur', 'Four', 'Micro-ondes', 'Machine à café', 'Équipement complet'],
+    images: [
+      { src: '/images/Cuisine1.jpg', alt: 'Cuisine équipée Villa Loulou' },
+      { src: '/images/Cuisine2.jpg', alt: 'Cuisine Villa Loulou' },
+      { src: '/images/Cuisine3.jpg', alt: 'Cuisine Villa Loulou' },
+    ],
+  },
+  {
+    id: 'chambre-1',
+    label: 'Chambre 1',
+    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
+    images: [
+      { src: '/images/Chambre1-1.jpg', alt: 'Chambre 1 Villa Loulou' },
+      { src: '/images/Chambre1-2.jpg', alt: 'Chambre 1 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'chambre-2',
+    label: 'Chambre 2',
+    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
+    images: [
+      { src: '/images/Chambre2-1.jpg', alt: 'Chambre 2 Villa Loulou' },
+      { src: '/images/Chambre2-2.jpg', alt: 'Chambre 2 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'chambre-3',
+    label: 'Chambre 3',
+    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
+    images: [
+      { src: '/images/Chambre3-1.jpg', alt: 'Chambre 3 Villa Loulou' },
+      { src: '/images/Chambre3-2.jpg', alt: 'Chambre 3 Villa Loulou' },
+      { src: '/images/Chambre3-3.jpg', alt: 'Chambre 3 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'chambre-4',
+    label: 'Chambre 4',
+    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
+    images: [
+      { src: '/images/Chambre4-1.jpg', alt: 'Chambre 4 Villa Loulou' },
+      { src: '/images/Chambre4-2.jpg', alt: 'Chambre 4 Villa Loulou' },
+      { src: '/images/Chambre4-3.jpg', alt: 'Chambre 4 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'piscine',
+    label: 'Piscine',
+    amenities: ['Piscine chauffée', 'Transats', 'Parasols', 'Vue sur l\'Atlas'],
+    images: [
+      { src: '/images/Piscine1.jpg', alt: 'Piscine privée Villa Loulou' },
+      { src: '/images/Piscine2.jpg', alt: 'Piscine et transats Villa Loulou' },
+      { src: '/images/lit-piscine.jpg', alt: 'Lit et piscine Villa Loulou' },
+    ],
+  },
+  {
+    id: 'jardin',
+    label: 'Jardin & terrasse',
+    amenities: ['Terrasse', 'Salon de jardin', 'Table à manger', 'Mini-bar extérieur', 'Douche extérieure'],
+    images: [
+      { src: '/images/Jardin1.jpg', alt: 'Jardin Villa Loulou' },
+      { src: '/images/Jardin2.jpg', alt: 'Jardin Villa Loulou' },
+      { src: '/images/Terasse-Salon.jpg', alt: 'Terrasse salon Villa Loulou' },
+      { src: '/images/Terasse-Table-a-manger.jpg', alt: 'Terrasse table à manger Villa Loulou' },
+      { src: '/images/Terasse-mini-bar.jpg', alt: 'Terrasse mini-bar Villa Loulou' },
+    ],
+  },
+  {
+    id: 'sdb-1',
+    label: 'Salle de bain 1',
+    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
+    images: [
+      { src: '/images/Douche1-1.jpg', alt: 'Salle de bain 1 Villa Loulou' },
+      { src: '/images/Douche1-2.jpg', alt: 'Salle de bain 1 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'sdb-2',
+    label: 'Salle de bain 2',
+    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
+    images: [
+      { src: '/images/Douche2-1.jpg', alt: 'Salle de bain 2 Villa Loulou' },
+      { src: '/images/Douche2-2.jpg', alt: 'Salle de bain 2 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'sdb-3',
+    label: 'Salle de bain 3',
+    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
+    images: [
+      { src: '/images/Douche3-1.jpg', alt: 'Salle de bain 3 Villa Loulou' },
+      { src: '/images/Douche3-2.jpg', alt: 'Salle de bain 3 Villa Loulou' },
+      { src: '/images/Douche3-3.jpg', alt: 'Salle de bain 3 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'sdb-4',
+    label: 'Salle de bain 4',
+    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
+    images: [
+      { src: '/images/Douche4-1.jpg', alt: 'Salle de bain 4 Villa Loulou' },
+      { src: '/images/Douche4-2.jpg', alt: 'Salle de bain 4 Villa Loulou' },
+    ],
+  },
+  {
+    id: 'toilettes',
+    label: 'Toilettes',
+    amenities: ['Lavabo', 'Articles de toilette fournis'],
+    images: [
+      { src: '/images/Toilette-lavabo1.jpg', alt: 'Toilette lavabo Villa Loulou' },
+      { src: '/images/toilette-lavabo2.jpg', alt: 'Toilette lavabo Villa Loulou' },
+    ],
+  },
+  {
+    id: 'hammam',
+    label: 'Hammam',
+    amenities: ['Hammam traditionnel', 'Espace détente'],
+    images: [
+      { src: '/images/hammam.jpg', alt: 'Hammam Villa Loulou' },
+      { src: '/images/hammam1.png', alt: 'Hammam Villa Loulou' },
+      { src: '/images/hammam2.png', alt: 'Hammam Villa Loulou' },
+    ],
+  },
+];
+
+// Vues : une par catégorie. Chambres et SDB regroupent plusieurs espaces à la suite.
+const espaceById = Object.fromEntries(espaces.map((e) => [e.id, e]));
+const views = [
+  { id: 'salon', espaces: [espaceById['salon']] },
+  { id: 'chambres', espaces: [espaceById['chambre-1'], espaceById['chambre-2'], espaceById['chambre-3'], espaceById['chambre-4']] },
+  { id: 'sdb', espaces: [espaceById['sdb-1'], espaceById['sdb-2'], espaceById['sdb-3'], espaceById['sdb-4']] },
+  { id: 'piscine', espaces: [espaceById['piscine']] },
+  { id: 'hammam', espaces: [espaceById['hammam']] },
+  { id: 'jardin', espaces: [espaceById['jardin']] },
+  { id: 'cuisine', espaces: [espaceById['cuisine']] },
+  { id: 'toilettes', espaces: [espaceById['toilettes']] },
+];
+---
+
+<Layout
+  locale={locale}
+  title={t('laVilla.metaTitle')}
+  description={t('laVilla.metaDescription')}
+>
+  <!-- 1. Hero / Bannière -->
+  <section class="page-banner" aria-label="La Villa Loulou à Marrakech">
+    <div class="page-banner-bg">
+      <img
+        src="/images/hero-la-villa.jpg"
+        alt="Villa Loulou : piscine, jardin et terrasse à Marrakech"
+        width="1920"
+        height="600"
+        fetchpriority="high"
+      />
+      <span class="page-banner-overlay" aria-hidden="true" />
+    </div>
+    <h1 class="visually-hidden">{t('laVilla.bannerTitle')}</h1>
+  </section>
+
+  <!-- 2. Présentation -->
+  <section class="section" aria-labelledby="presentation-title">
+    <div class="container">
+      <h2 id="presentation-title" class="section-title">{t('laVilla.presentationTitle')}</h2>
+      <div class="prose">
+        <p>
+          {t('laVilla.presentationText')}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Les espaces — tout à la suite -->
+  <section class="section section--espaces" aria-labelledby="espaces-title">
+    <div class="container">
+      <h2 id="espaces-title" class="section-title">{t('laVilla.espacesTitle')}</h2>
+      <p class="espaces-intro">{t('laVilla.espacesIntro')}</p>
+      <div class="espaces-flow">
+        {views.flatMap((view) => view.espaces.map((espace) => (
+          <div class="espace-block" id={`espace-${espace.id}`}>
+            <h3 class="espace-panel-title">{espace.label}</h3>
+            <div class="galerie-grid">
+              {espace.images.map((img) => (
+                <div class="galerie-item">
+                  <img src={img.src} alt={img.alt} width="800" height="600" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Équipements -->
+  <section class="section section--equipements" aria-labelledby="equipements-title">
+    <div class="container">
+      <h2 id="equipements-title" class="section-title">{t('laVilla.equipementsTitle')}</h2>
+      <div class="equipements-grid">
+        <div class="equipements-cat">
+          <h3>{t('laVilla.equipementsComfort')}</h3>
+          <ul>
+            <li>Climatisation</li>
+            <li>WiFi gratuit</li>
+            <li>Réception 24h/24</li>
+            <li>Serviettes et linge de lit fournis</li>
+            <li>Articles de toilette gratuits</li>
+          </ul>
+        </div>
+        <div class="equipements-cat">
+          <h3>{t('laVilla.equipementsExterior')}</h3>
+          <ul>
+            <li>Piscine extérieure privée</li>
+            <li>Jardin</li>
+            <li>Terrasse</li>
+            <li>Parking privé gratuit</li>
+          </ul>
+        </div>
+        <div class="equipements-cat">
+          <h3>{t('laVilla.equipementsInterior')}</h3>
+          <ul>
+            <li>Hammam</li>
+            <li>Cuisine équipée (réfrigérateur, machine à café)</li>
+            <li>1 salon · 1 cuisine · 4 chambres · 4 salles de bains</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Localisation -->
+  <section class="section section--localisation" aria-labelledby="localisation-title">
+    <div class="container">
+      <h2 id="localisation-title" class="section-title">{t('laVilla.localisationTitle')}</h2>
+      <p class="localisation-intro">{t('laVilla.localisationIntro')}</p>
+      <ul class="distances-list">
+        <li>{t('laVilla.distanceAirport')}</li>
+        <li>{t('laVilla.distanceMenara')}</li>
+        <li>{t('laVilla.distanceJemaa')}</li>
+        <li>{t('laVilla.distanceBeldi')}</li>
+      </ul>
+      <div class="map-wrapper">
+        <div id="map-villa" class="map-container" aria-label={t('laVilla.mapAria')}></div>
+      </div>
+      <p class="section-cta">
+        <a href={pathForLocale(locale, '/contact/')} class="btn btn-primary">{t('laVilla.ctaContact')}</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section {
+    padding: 4rem 0;
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .section {
+      padding: 2.5rem 0;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .page-banner {
+      min-height: 55vh;
+    }
+    .prose p {
+      font-size: 0.9375rem;
+    }
+    .equipements-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .equipements-cat {
+      padding: 1.25rem 1rem;
+    }
+    .map-container {
+      height: 280px;
+    }
+    .btn {
+      min-height: 48px;
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+    }
+    .espace-panel-title {
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .galerie-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    .galerie-item {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  @media (max-width: 480px) {
+    .galerie-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .page-banner {
+    position: relative;
+    min-height: 70vh;
+    display: block;
+  }
+  .page-banner-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .page-banner-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .page-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 37, 32, 0.25);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .prose {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+  .prose p {
+    margin: 0 0 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .espaces-intro {
+    text-align: center;
+    margin: 0 0 2rem;
+    color: var(--color-text-secondary);
+  }
+  .espaces-flow {
+    max-width: 75rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .espace-block {
+    margin-bottom: 3rem;
+  }
+  .espace-block:last-child {
+    margin-bottom: 0;
+  }
+  .espace-panel-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 1.5rem;
+  }
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    justify-items: center;
+  }
+  .galerie-item {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+  .galerie-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-smooth);
+  }
+  .galerie-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .equipements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .equipements-cat h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem;
+  }
+  .equipements-cat ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .equipements-cat li {
+    padding: 0.25rem 0;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .localisation-intro {
+    text-align: center;
+    margin: 0 0 1rem;
+    color: var(--color-text-secondary);
+  }
+  .distances-list {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    text-align: center;
+  }
+  .distances-list li {
+    padding: 0.25rem 0;
+    color: var(--color-text-primary);
+  }
+  .map-wrapper {
+    margin-bottom: 2rem;
+  }
+  .map-container {
+    height: 400px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--color-sand);
+  }
+  :global(.map-pin) {
+    border: none !important;
+    background: none !important;
+  }
+  :global(.map-pin__svg) {
+    display: block;
+    width: 24px;
+    height: 42px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+  .section-cta {
+    text-align: center;
+    margin: 0;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-terracotta);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+  }
+  .btn:hover {
+    background: var(--color-terracotta-dark);
+  }
+  .equipements-cat {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 20px rgba(44, 37, 32, 0.08);
+    transition: box-shadow var(--transition-smooth);
+  }
+  .equipements-cat:hover {
+    box-shadow: 0 12px 32px rgba(44, 37, 32, 0.12);
+  }
+</style>
+
+<script>
+  import L from 'leaflet';
+
+  const villaCoords = [31.56706, -8.03119];
+
+  const villaIcon = L.divIcon({
+    className: 'map-pin',
+    html: '<svg class="map-pin__svg" viewBox="0 0 24 42" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 30 12 30s12-21 12-30C24 5.4 18.6 0 12 0z" fill="#b8543a" stroke="#fff" stroke-width="1.5"/></svg>',
+    iconSize: [24, 42],
+    iconAnchor: [12, 42],
+  });
+
+  function initMap() {
+    const el = document.getElementById('map-villa');
+    if (!el) return;
+    const map = L.map(el, { scrollWheelZoom: true }).setView(villaCoords, 16);
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 20,
+    }).addTo(map);
+    L.marker(villaCoords, { icon: villaIcon })
+      .addTo(map)
+      .bindPopup('<strong>Villa Loulou</strong><br>Marrakech');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMap);
+  } else {
+    initMap();
+  }
+</script>

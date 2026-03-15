@@ -1,0 +1,50 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+  href?: string;
+}
+const { variant = 'dark', href = '/' } = Astro.props;
+---
+<a href={href} class:list={['logo', variant === 'light' ? 'logo--light' : 'logo--dark']} aria-label="Villa Loulou - Accueil">
+  <span class="logo-villa">VILLA</span>
+  <span class="logo-name">Loulou</span>
+</a>
+
+<style>
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    line-height: 1.1;
+    color: inherit;
+    max-height: 48px;
+  }
+  .logo-villa,
+  .logo-name {
+    font-family: var(--font-display);
+    letter-spacing: 0.28em;
+  }
+  .logo-villa {
+    font-size: 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  .logo-name {
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .logo--light .logo-villa {
+    color: #ffffff;
+  }
+  .logo--light .logo-name {
+    color: #ffffff;
+  }
+  .logo--dark .logo-villa {
+    color: var(--color-text-secondary);
+  }
+  .logo--dark .logo-name {
+    color: var(--color-text-primary);
+  }
+</style>

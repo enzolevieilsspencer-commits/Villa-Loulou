@@ -1,0 +1,378 @@
+---
+import Logo from './Logo.astro';
+import { getTranslations, pathForLocale, locales, localeLabels, type Locale } from '../lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = getTranslations(locale);
+const pathname = Astro.url.pathname;
+const pathWithoutLocale = pathname.replace(/^\/(en|it|es|ar)(?=\/|$)/, '') || '/';
+
+const navLinks = [
+  { path: '/', key: 'common.nav.home' },
+  { path: '/la-villa/', key: 'common.nav.laVilla' },
+  { path: '/nos-services/', key: 'common.nav.services' },
+  { path: '/contact/', key: 'common.nav.contact' },
+];
+---
+<header class="header" aria-label="Navigation principale">
+  <nav class="nav" aria-label="Menu principal">
+    <div class="nav-logo">
+      <Logo variant="dark" href={pathForLocale(locale, '/')} />
+    </div>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label={t('common.openMenu')} id="nav-toggle" data-close-label={t('common.closeMenu')}>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <div id="nav-menu" class="nav-menu">
+      <ul class="nav-links">
+        {navLinks.map((link) => (
+          <li>
+            <a href={pathForLocale(locale, link.path)} class="nav-link">{t(link.key)}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="nav-lang-wrap">
+        <a href={pathForLocale(locale, '/contact/')} class="btn-cta btn-cta--mobile">{t('common.ctaContact')}</a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="nav-lang nav-lang--desktop" data-lang-switcher>
+        <button type="button" class="nav-lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Choisir la langue" id="lang-toggle-desktop">
+          {localeLabels[locale]}
+        </button>
+        <ul class="nav-lang-dropdown" id="lang-dropdown-desktop" hidden>
+          {locales.filter((loc) => loc !== locale).map((loc) => (
+            <li>
+              <a href={pathForLocale(loc, pathWithoutLocale)} class="nav-lang-link" hreflang={loc} data-locale={loc}>{localeLabels[loc]}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <a href={pathForLocale(locale, '/contact/')} class="btn-cta btn-cta--desktop">{t('common.ctaContact')}</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(44, 37, 32, 0.06);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+    min-height: var(--nav-height);
+  }
+  .nav-logo {
+    display: block;
+    flex-shrink: 0;
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: background var(--transition-smooth);
+  }
+  .nav-toggle:hover {
+    background: rgba(44, 37, 32, 0.06);
+  }
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 2px;
+  }
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    border-radius: 1px;
+    transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+  }
+  .header.is-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .header.is-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .header.is-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.0625rem;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0;
+    transition: color var(--transition-smooth);
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: var(--color-terracotta);
+    transform: scaleX(0);
+    transition: transform var(--transition-smooth);
+  }
+  .nav-link:hover {
+    color: var(--color-terracotta);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    min-height: 44px;
+    background: var(--color-terracotta);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: background var(--transition-smooth), transform 0.2s ease, box-shadow var(--transition-smooth);
+  }
+  .btn-cta:hover {
+    background: var(--color-terracotta-dark);
+  }
+  .btn-cta:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  .btn-cta--mobile {
+    display: none;
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-lang-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  .nav-lang {
+    position: relative;
+  }
+  .nav-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: 1px solid rgba(44, 37, 32, 0.2);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: inherit;
+    transition: border-color var(--transition-smooth), color var(--transition-smooth);
+  }
+  .nav-lang-btn:hover {
+    color: var(--color-terracotta);
+    border-color: var(--color-terracotta);
+  }
+  .nav-lang-btn:focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 2px;
+  }
+  .nav-lang-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin: 0.25rem 0 0;
+    padding: 0.25rem 0;
+    list-style: none;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    min-width: 10rem;
+    z-index: 60;
+  }
+  .nav-lang-dropdown[hidden] {
+    display: none;
+  }
+  .nav-lang-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: background var(--transition-smooth), color var(--transition-smooth);
+  }
+  .nav-lang-link:hover {
+    background: rgba(44, 37, 32, 0.06);
+    color: var(--color-terracotta);
+  }
+  .nav-lang--desktop {
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      padding: 0.625rem 1rem;
+    }
+    .nav-toggle {
+      display: flex;
+    }
+    .nav-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ffffff;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: 0;
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    .header.is-open .nav-menu {
+      display: flex !important;
+    }
+    .nav-links {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding-top: 1rem;
+    }
+    .nav-links li {
+      border-bottom: 1px solid rgba(44, 37, 32, 0.08);
+    }
+    .nav-link {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.125rem;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-link::after {
+      display: none;
+    }
+    .btn-cta--desktop {
+      display: none;
+    }
+    .btn-cta--mobile {
+      display: inline-flex;
+      margin-top: 2rem;
+      width: 100%;
+      min-height: 48px;
+      font-size: 1rem;
+    }
+    .nav-logo {
+      order: 0;
+    }
+    .nav-right {
+      order: 1;
+      margin-left: auto;
+    }
+    .nav-toggle {
+      order: 2;
+    }
+  }
+  @media (min-width: 769px) {
+    .nav-menu .nav-lang-wrap .nav-lang {
+      display: none;
+    }
+    .nav-lang--desktop {
+      display: block;
+    }
+  }
+</style>
+<script>
+  (function () {
+    const header = document.querySelector('.header');
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    if (toggle && menu && header) {
+      const closeLabel = toggle.getAttribute('data-close-label');
+      const openLabel = toggle.getAttribute('aria-label');
+      toggle.addEventListener('click', () => {
+        const isOpen = header.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute('aria-label', isOpen && closeLabel ? closeLabel : (openLabel || 'Menu'));
+      });
+      menu.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          header.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', openLabel || 'Menu');
+        });
+      });
+    }
+    function setupLangDropdown(btnId, dropdownId) {
+      const btn = document.getElementById(btnId);
+      const dropdown = document.getElementById(dropdownId);
+      if (!btn || !dropdown) return;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = dropdown.hidden;
+        dropdown.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', () => {
+        dropdown.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+    setupLangDropdown('lang-toggle', 'lang-dropdown');
+    setupLangDropdown('lang-toggle-desktop', 'lang-dropdown-desktop');
+
+    var COOKIE_NAME = 'villa-loulou-locale';
+    var COOKIE_MAX_AGE = 365 * 24 * 60 * 60;
+    document.querySelectorAll('.nav-lang-link').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var loc = a.getAttribute('data-locale') || a.getAttribute('hreflang');
+        if (loc) {
+          document.cookie = COOKIE_NAME + '=' + encodeURIComponent(loc) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
+        }
+      });
+    });
+  })();
+</script>
