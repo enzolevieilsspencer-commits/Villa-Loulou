@@ -8,6 +8,8 @@ import IconBroom from '~icons/mdi/broom';
 
 const locale = 'en';
 const t = getTranslations(locale);
+const labelVoirPlus = t('home.temoignagesVoirPlus');
+const labelVoirMoins = t('home.temoignagesVoirMoins');
 ---
 
 <Layout
@@ -127,7 +129,7 @@ const t = getTranslations(locale);
             <p class="temoignage__text">
               {t('home.temoignage1Text')}
             </p>
-            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more="Voir plus…" data-less="Voir moins">Voir plus…</button>
+            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more={labelVoirPlus} data-less={labelVoirMoins}>{labelVoirPlus}</button>
             <footer>{t('home.temoignage1Footer')}</footer>
           </blockquote>
         </li>
@@ -136,7 +138,7 @@ const t = getTranslations(locale);
             <p class="temoignage__text">
               <strong>{t('home.temoignage2Intro')}</strong> {t('home.temoignage2Text')}
             </p>
-            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more="Voir plus…" data-less="Voir moins">Voir plus…</button>
+            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more={labelVoirPlus} data-less={labelVoirMoins}>{labelVoirPlus}</button>
             <footer>{t('home.temoignage2Footer')}</footer>
           </blockquote>
         </li>
