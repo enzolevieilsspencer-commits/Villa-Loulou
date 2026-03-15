@@ -533,10 +533,10 @@ const views = [
   function initMap() {
     const el = document.getElementById('map-villa');
     if (!el) return;
-    const map = L.map(el, { scrollWheelZoom: true }).setView(villaCoords, 16);
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 20,
+    const map = L.map(el, { scrollWheelZoom: true }).setView(villaCoords, 14);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
     L.marker(villaCoords, { icon: villaIcon })
       .addTo(map)

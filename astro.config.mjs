@@ -21,5 +21,13 @@ export default defineConfig({
         '/api': { target: 'http://localhost:3001', changeOrigin: true },
       },
     },
+    build: {
+      rollupOptions: {
+        onwarn(warning, defaultHandler) {
+          if (warning.code === "UNUSED_EXTERNAL_IMPORT" && String(warning.message || "").includes("@astrojs/internal-helpers")) return;
+          defaultHandler(warning);
+        },
+      },
+    },
   },
 });
