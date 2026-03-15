@@ -23,8 +23,8 @@ const baseUrl = Astro.url.origin;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+    <link rel="icon" href="/favicon.ico?v=2" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     {locales.map((loc) => (
@@ -47,21 +47,8 @@ const baseUrl = Astro.url.origin;
       (function () {
         const COOKIE_NAME = 'villa-loulou-locale';
         const COOKIE_MAX_AGE = 365 * 24 * 60 * 60; // 1 an
-        const pathname = window.location.pathname || '/';
-        const isRoot = pathname === '/' || pathname === '';
-
         function setCookie(value) {
           document.cookie = COOKIE_NAME + '=' + encodeURIComponent(value) + '; path=/; max-age=' + COOKIE_MAX_AGE + '; SameSite=Lax';
-        }
-        function getCookie() {
-          const m = document.cookie.match(new RegExp('(?:^| )' + COOKIE_NAME + '=([^;]+)'));
-          return m ? decodeURIComponent(m[1]) : null;
-        }
-
-        const preferred = getCookie();
-        if (isRoot && preferred && preferred !== 'fr') {
-          window.location.replace('/' + preferred + '/');
-          return;
         }
         setCookie(locale);
 
