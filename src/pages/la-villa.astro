@@ -1,167 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getTranslations, pathForLocale } from '../lib/i18n';
+import { viewsData } from '../lib/la-villa-espaces';
 import 'leaflet/dist/leaflet.css';
 
 const locale = 'fr';
 const t = getTranslations(locale);
-
-const espaces = [
-  {
-    id: 'salon',
-    label: 'Salon',
-    amenities: ['Chauffage', 'Cheminée', 'Climatisation', 'Système audio', 'Télévision'],
-    images: [
-      { src: '/images/Hall-entree.jpg', alt: 'Hall d\'entrée de la Villa Loulou' },
-      { src: '/images/Salon1.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon2.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon3.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon4.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon5.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon6.jpg', alt: 'Salon Villa Loulou' },
-      { src: '/images/Salon7.jpg', alt: 'Salon Villa Loulou' },
-    ],
-  },
-  {
-    id: 'cuisine',
-    label: 'Cuisine',
-    amenities: ['Réfrigérateur', 'Four', 'Micro-ondes', 'Machine à café', 'Équipement complet'],
-    images: [
-      { src: '/images/Cuisine1.jpg', alt: 'Cuisine équipée Villa Loulou' },
-      { src: '/images/Cuisine2.jpg', alt: 'Cuisine Villa Loulou' },
-      { src: '/images/Cuisine3.jpg', alt: 'Cuisine Villa Loulou' },
-    ],
-  },
-  {
-    id: 'chambre-1',
-    label: 'Chambre 1',
-    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
-    images: [
-      { src: '/images/Chambre1-1.jpg', alt: 'Chambre 1 Villa Loulou' },
-      { src: '/images/Chambre1-2.jpg', alt: 'Chambre 1 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'chambre-2',
-    label: 'Chambre 2',
-    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
-    images: [
-      { src: '/images/Chambre2-1.jpg', alt: 'Chambre 2 Villa Loulou' },
-      { src: '/images/Chambre2-2.jpg', alt: 'Chambre 2 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'chambre-3',
-    label: 'Chambre 3',
-    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
-    images: [
-      { src: '/images/Chambre3-1.jpg', alt: 'Chambre 3 Villa Loulou' },
-      { src: '/images/Chambre3-2.jpg', alt: 'Chambre 3 Villa Loulou' },
-      { src: '/images/Chambre3-3.jpg', alt: 'Chambre 3 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'chambre-4',
-    label: 'Chambre 4',
-    amenities: ['Lit double', 'Climatisation', 'Dressing', 'Linge de lit fourni'],
-    images: [
-      { src: '/images/Chambre4-1.jpg', alt: 'Chambre 4 Villa Loulou' },
-      { src: '/images/Chambre4-2.jpg', alt: 'Chambre 4 Villa Loulou' },
-      { src: '/images/Chambre4-3.jpg', alt: 'Chambre 4 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'piscine',
-    label: 'Piscine',
-    amenities: ['Piscine chauffée', 'Transats', 'Parasols', 'Vue sur l\'Atlas'],
-    images: [
-      { src: '/images/Piscine1.jpg', alt: 'Piscine privée Villa Loulou' },
-      { src: '/images/Piscine2.jpg', alt: 'Piscine et transats Villa Loulou' },
-      { src: '/images/lit-piscine.jpg', alt: 'Lit et piscine Villa Loulou' },
-    ],
-  },
-  {
-    id: 'jardin',
-    label: 'Jardin & terrasse',
-    amenities: ['Terrasse', 'Salon de jardin', 'Table à manger', 'Mini-bar extérieur', 'Douche extérieure'],
-    images: [
-      { src: '/images/Jardin1.jpg', alt: 'Jardin Villa Loulou' },
-      { src: '/images/Jardin2.jpg', alt: 'Jardin Villa Loulou' },
-      { src: '/images/Terasse-Salon.jpg', alt: 'Terrasse salon Villa Loulou' },
-      { src: '/images/Terasse-Table-a-manger.jpg', alt: 'Terrasse table à manger Villa Loulou' },
-      { src: '/images/Terasse-mini-bar.jpg', alt: 'Terrasse mini-bar Villa Loulou' },
-    ],
-  },
-  {
-    id: 'sdb-1',
-    label: 'Salle de bain 1',
-    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
-    images: [
-      { src: '/images/Douche1-1.jpg', alt: 'Salle de bain 1 Villa Loulou' },
-      { src: '/images/Douche1-2.jpg', alt: 'Salle de bain 1 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'sdb-2',
-    label: 'Salle de bain 2',
-    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
-    images: [
-      { src: '/images/Douche2-1.jpg', alt: 'Salle de bain 2 Villa Loulou' },
-      { src: '/images/Douche2-2.jpg', alt: 'Salle de bain 2 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'sdb-3',
-    label: 'Salle de bain 3',
-    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
-    images: [
-      { src: '/images/Douche3-1.jpg', alt: 'Salle de bain 3 Villa Loulou' },
-      { src: '/images/Douche3-2.jpg', alt: 'Salle de bain 3 Villa Loulou' },
-      { src: '/images/Douche3-3.jpg', alt: 'Salle de bain 3 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'sdb-4',
-    label: 'Salle de bain 4',
-    amenities: ['Douche', 'Lavabo', 'Articles de toilette fournis'],
-    images: [
-      { src: '/images/Douche4-1.jpg', alt: 'Salle de bain 4 Villa Loulou' },
-      { src: '/images/Douche4-2.jpg', alt: 'Salle de bain 4 Villa Loulou' },
-    ],
-  },
-  {
-    id: 'toilettes',
-    label: 'Toilettes',
-    amenities: ['Lavabo', 'Articles de toilette fournis'],
-    images: [
-      { src: '/images/Toilette-lavabo1.jpg', alt: 'Toilette lavabo Villa Loulou' },
-      { src: '/images/toilette-lavabo2.jpg', alt: 'Toilette lavabo Villa Loulou' },
-    ],
-  },
-  {
-    id: 'hammam',
-    label: 'Hammam',
-    amenities: ['Hammam traditionnel', 'Espace détente'],
-    images: [
-      { src: '/images/hammam.jpg', alt: 'Hammam Villa Loulou' },
-      { src: '/images/hammam1.png', alt: 'Hammam Villa Loulou' },
-      { src: '/images/hammam2.png', alt: 'Hammam Villa Loulou' },
-    ],
-  },
-];
-
-// Vues : une par catégorie. Chambres et SDB regroupent plusieurs espaces à la suite.
-const espaceById = Object.fromEntries(espaces.map((e) => [e.id, e]));
-const views = [
-  { id: 'salon', espaces: [espaceById['salon']] },
-  { id: 'chambres', espaces: [espaceById['chambre-1'], espaceById['chambre-2'], espaceById['chambre-3'], espaceById['chambre-4']] },
-  { id: 'sdb', espaces: [espaceById['sdb-1'], espaceById['sdb-2'], espaceById['sdb-3'], espaceById['sdb-4']] },
-  { id: 'piscine', espaces: [espaceById['piscine']] },
-  { id: 'hammam', espaces: [espaceById['hammam']] },
-  { id: 'jardin', espaces: [espaceById['jardin']] },
-  { id: 'cuisine', espaces: [espaceById['cuisine']] },
-  { id: 'toilettes', espaces: [espaceById['toilettes']] },
-];
+const views = viewsData;
 ---
 
 <Layout
@@ -204,7 +49,7 @@ const views = [
       <div class="espaces-flow">
         {views.flatMap((view) => view.espaces.map((espace) => (
           <div class="espace-block" id={`espace-${espace.id}`}>
-            <h3 class="espace-panel-title">{espace.label}</h3>
+            <h3 class="espace-panel-title">{t('laVilla.' + espace.labelKey)}</h3>
             <div class="galerie-grid">
               {espace.images.map((img) => (
                 <div class="galerie-item">
@@ -226,28 +71,28 @@ const views = [
         <div class="equipements-cat">
           <h3>{t('laVilla.equipementsComfort')}</h3>
           <ul>
-            <li>Climatisation</li>
-            <li>WiFi gratuit</li>
-            <li>Réception 24h/24</li>
-            <li>Serviettes et linge de lit fournis</li>
-            <li>Articles de toilette gratuits</li>
+            <li>{t('laVilla.equipComfort1')}</li>
+            <li>{t('laVilla.equipComfort2')}</li>
+            <li>{t('laVilla.equipComfort3')}</li>
+            <li>{t('laVilla.equipComfort4')}</li>
+            <li>{t('laVilla.equipComfort5')}</li>
           </ul>
         </div>
         <div class="equipements-cat">
           <h3>{t('laVilla.equipementsExterior')}</h3>
           <ul>
-            <li>Piscine extérieure privée</li>
-            <li>Jardin</li>
-            <li>Terrasse</li>
-            <li>Parking privé gratuit</li>
+            <li>{t('laVilla.equipExterior1')}</li>
+            <li>{t('laVilla.equipExterior2')}</li>
+            <li>{t('laVilla.equipExterior3')}</li>
+            <li>{t('laVilla.equipExterior4')}</li>
           </ul>
         </div>
         <div class="equipements-cat">
           <h3>{t('laVilla.equipementsInterior')}</h3>
           <ul>
-            <li>Hammam</li>
-            <li>Cuisine équipée (réfrigérateur, machine à café)</li>
-            <li>1 salon · 1 cuisine · 4 chambres · 4 salles de bains</li>
+            <li>{t('laVilla.equipInterior1')}</li>
+            <li>{t('laVilla.equipInterior2')}</li>
+            <li>{t('laVilla.equipInterior3')}</li>
           </ul>
         </div>
       </div>
@@ -541,6 +386,12 @@ const views = [
     L.marker(villaCoords, { icon: villaIcon })
       .addTo(map)
       .bindPopup('<strong>Villa Loulou</strong><br>Marrakech');
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+    }
   }
 
   if (document.readyState === 'loading') {

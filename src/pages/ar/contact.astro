@@ -531,6 +531,12 @@ const privacyUrl = pathForLocale(locale, '/politique-confidentialite/');
     L.marker(villaCoords, { icon: villaIcon })
       .addTo(map)
       .bindPopup('<strong>Villa Loulou</strong><br>Marrakech');
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      map.dragging.disable();
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+    }
   }
 
   if (document.readyState === 'loading') {
