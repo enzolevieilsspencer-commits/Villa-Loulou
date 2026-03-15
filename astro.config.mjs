@@ -4,7 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 import Icons from "unplugin-icons/vite";
 
 // https://astro.build/config
+// Quand tu auras le nom de domaine : remplace villa-loulou.com ici et dans public/robots.txt + sitemap
 export default defineConfig({
+  site: 'https://villa-loulou.com',
   i18n: {
     defaultLocale: "fr",
     locales: ["fr", "en", "it", "es", "ar"],

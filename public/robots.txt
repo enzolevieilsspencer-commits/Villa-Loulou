@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# À mettre à jour quand tu auras le domaine
+Sitemap: https://villa-loulou.com/sitemap.xml
