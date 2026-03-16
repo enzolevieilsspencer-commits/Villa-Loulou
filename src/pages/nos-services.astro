@@ -184,27 +184,30 @@ const faqItems = [
       padding: 2.5rem 0;
     }
     .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
     .page-title {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
+      line-height: 1.2;
     }
     .services-cards {
       grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 0.875rem;
     }
     .services-cards--supplement {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
     }
     .service-card {
-      padding: 1.25rem 1rem;
+      padding: 1.1rem 0.9rem;
     }
     .services-images {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
     .faq-item {
-      padding: 1rem;
+      padding: 0.9rem 0.85rem;
     }
   }
 
@@ -236,12 +239,15 @@ const faqItems = [
     border-radius: var(--radius-xl);
     box-shadow: 0 4px 20px rgba(44, 37, 32, 0.08);
     transition: box-shadow var(--transition-smooth);
+    text-align: center;
   }
   .service-card:hover {
     box-shadow: 0 12px 32px rgba(44, 37, 32, 0.12);
   }
   .service-card-icon {
-    display: block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 0.5rem;
     color: var(--color-terracotta);
   }
@@ -267,6 +273,14 @@ const faqItems = [
     max-width: 56rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  /* Forcer une colonne en mobile pour "En supplément" */
+  @media (max-width: 768px) {
+    .services-cards--supplement {
+      grid-template-columns: 1fr;
+      max-width: 28rem;
+    }
   }
 
   .services-images {
