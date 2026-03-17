@@ -1,0 +1,621 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getTranslations, pathForLocale } from '../../lib/i18n';
+import IconPool from '~icons/mdi/pool';
+import IconSilverwareForkKnife from '~icons/mdi/silverware-fork-knife';
+import IconTableTennis from '~icons/mdi/table-tennis';
+import IconBroom from '~icons/mdi/broom';
+
+const locale = 'es';
+const t = getTranslations(locale);
+const labelVoirPlus = t('home.temoignagesVoirPlus');
+const labelVoirMoins = t('home.temoignagesVoirMoins');
+---
+
+<Layout
+  locale={locale}
+  title={t('home.metaTitle')}
+  description={t('home.metaDescription')}
+>
+  <!-- Schema.org LodgingBusiness -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Villa Loulou",
+    "address": { "@type": "PostalAddress", "addressLocality": "Marrakech", "addressCountry": "MA" },
+    "priceRange": "€€€",
+    "amenityFeature": [
+      "Piscine extérieure chauffée", "WiFi gratuit", "Climatisation", "Hammam",
+      "Parking privé gratuit", "Petit déjeuner halal", "4 chambres", "4 salles de bains",
+      "Cuisine équipée", "Jardin", "Terrasse", "Navette aéroport"
+    ]
+  })} />
+
+  <!-- 1. Hero plein écran -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-bg">
+      <img
+        src="/images/Hero-section.jpg"
+        alt="Villa Loulou à Marrakech — vue extérieure avec piscine privée et jardin"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+      />
+      <span class="hero-overlay" aria-hidden="true" />
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-title" class="hero-title">{t('home.heroTitle')}</h1>
+      <h2 class="hero-subtitle">{t('home.heroSubtitle')}</h2>
+      <div class="hero-ctas">
+        <a href={pathForLocale(locale, '/la-villa/')} class="btn btn-primary">{t('home.heroCtaDiscover')}</a>
+        <a href={pathForLocale(locale, '/contact/')} class="btn btn-secondary">{t('home.heroCtaContact')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Accroche (image gauche, texte droite) -->
+  <section class="section section--accroche" aria-labelledby="accroche-title">
+    <div class="container">
+      <div class="accroche-layout">
+        <div class="accroche-image">
+          <img
+            src="/images/Salon7.jpg"
+            alt="Salon de la Villa Loulou à Marrakech — canapé, cheminée et vue sur le jardin"
+            width="600"
+            height="500"
+            loading="lazy"
+          />
+        </div>
+        <div class="accroche-content">
+          <h2 id="accroche-title" class="visually-hidden">{t('home.accrocheTitle')}</h2>
+          <p class="accroche-text">
+            {t('home.accrocheText')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Points forts -->
+  <section class="section section--points-forts" aria-labelledby="points-forts-title">
+    <div class="container">
+      <h2 id="points-forts-title" class="section-title">{t('home.pointsFortsTitle')}</h2>
+      <ul class="points-forts-grid">
+        <li class="point-fort rounded-xl">
+          <span class="point-fort-icon" aria-hidden="true"><IconPool /></span>
+          <span class="point-fort-label">{t('home.pointsFortsPool')}</span>
+        </li>
+        <li class="point-fort rounded-xl">
+          <span class="point-fort-icon" aria-hidden="true"><IconSilverwareForkKnife /></span>
+          <span class="point-fort-label">{t('home.pointsFortsBreakfast')}</span>
+        </li>
+        <li class="point-fort rounded-xl">
+          <span class="point-fort-icon" aria-hidden="true"><IconTableTennis /></span>
+          <span class="point-fort-label">{t('home.pointsFortsPingpong')}</span>
+        </li>
+        <li class="point-fort rounded-xl">
+          <span class="point-fort-icon" aria-hidden="true"><IconBroom /></span>
+          <span class="point-fort-label">{t('home.pointsFortsMaid')}</span>
+        </li>
+      </ul>
+      <p class="points-forts-cta">
+        <a href={pathForLocale(locale, '/nos-services/')} class="points-forts-link">{t('home.pointsFortsCta')}</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 4. Aperçu galerie -->
+  <section class="section section--galerie" aria-labelledby="galerie-title">
+    <div class="container container--galerie">
+      <h2 id="galerie-title" class="section-title">{t('home.galerieTitle')}</h2>
+      <div class="galerie-apercu">
+        <img src="/images/hammam.jpg" alt="Hammam traditionnel de la Villa Loulou à Marrakech" width="800" height="600" loading="lazy" />
+        <img src="/images/Piscine2.jpg" alt="Piscine et transats de la Villa Loulou" width="800" height="600" loading="lazy" />
+        <img src="/images/Salon1.jpg" alt="Salon de la Villa Loulou à Marrakech" width="800" height="600" loading="lazy" />
+      </div>
+      <p class="section-cta">
+        <a href={pathForLocale(locale, '/la-villa/')} class="link-arrow">{t('home.galerieCta')}</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Témoignages -->
+  <section class="section section--temoignages" aria-labelledby="temoignages-title">
+    <div class="container">
+      <h2 id="temoignages-title" class="section-title">{t('home.temoignagesTitle')}</h2>
+      <ul class="temoignages-list">
+        <li class="temoignage temoignage--expandable" data-expandable>
+          <blockquote>
+            <p class="temoignage__text">
+              {t('home.temoignage1Text')}
+            </p>
+            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more={labelVoirPlus} data-less={labelVoirMoins}>{labelVoirPlus}</button>
+            <footer>{t('home.temoignage1Footer')}</footer>
+          </blockquote>
+        </li>
+        <li class="temoignage temoignage--expandable" data-expandable>
+          <blockquote>
+            <p class="temoignage__text">
+              <strong>{t('home.temoignage2Intro')}</strong> {t('home.temoignage2Text')}
+            </p>
+            <button type="button" class="temoignage__voir-plus" aria-expanded="false" data-more={labelVoirPlus} data-less={labelVoirMoins}>{labelVoirPlus}</button>
+            <footer>{t('home.temoignage2Footer')}</footer>
+          </blockquote>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. CTA final -->
+  <section class="section section--cta" aria-labelledby="cta-title">
+    <div class="container container--narrow cta-final">
+      <h2 id="cta-title" class="cta-final__title">{t('home.ctaTitle')}</h2>
+      <p class="cta-final__text">{t('home.ctaText')}</p>
+      <a href={pathForLocale(locale, '/contact/')} class="btn btn-primary btn--large cta-final__btn">{t('home.ctaBtn')}</a>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('[data-expandable]').forEach(function (el) {
+      var btn = el.querySelector('.temoignage__voir-plus');
+      if (!btn) return;
+      var more = btn.getAttribute('data-more') || 'Voir plus…';
+      var less = btn.getAttribute('data-less') || 'Voir moins';
+      btn.addEventListener('click', function () {
+        var expanded = el.classList.toggle('is-expanded');
+        btn.setAttribute('aria-expanded', expanded);
+        btn.textContent = expanded ? less : more;
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .container--narrow {
+    max-width: 40rem;
+    text-align: center;
+  }
+  .container--galerie {
+    max-width: 90rem;
+  }
+  .section {
+    padding: 4rem 0;
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .section {
+      padding: 2.5rem 0;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: -0.5rem 0 1.25rem;
+    text-align: center;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+    .hero-bg {
+      overflow: hidden;
+    }
+    .hero-bg img {
+      transform: none;
+    }
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--color-hero-overlay);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2.5rem 2rem;
+    max-width: 38rem;
+    margin-top: -5rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: white;
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    min-height: 48px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    transition: background var(--transition-smooth), color var(--transition-smooth), border-color var(--transition-smooth);
+  }
+  .btn:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  .btn-primary {
+    background: var(--color-terracotta);
+    color: white;
+    border: none;
+  }
+  .btn-primary:hover {
+    background: var(--color-terracotta-dark);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: white;
+  }
+  .btn--large {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  /* Accroche (image gauche, texte droite) */
+  .accroche-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .accroche-image {
+    position: sticky;
+    top: calc(var(--nav-height) + 1rem);
+  }
+  .accroche-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 6/5;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+  .accroche-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .accroche-text {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    text-align: left;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 1.5rem 1rem;
+      margin-top: 0;
+    }
+    .hero-title {
+      font-size: 1.75rem;
+    }
+    .hero-subtitle {
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-ctas {
+      flex-direction: column;
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .hero-ctas .btn {
+      width: 100%;
+    }
+    .accroche-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .accroche-image {
+      position: static;
+    }
+    .accroche-image img {
+      aspect-ratio: 4/3;
+    }
+    .accroche-text {
+      text-align: center;
+      font-size: 1.0625rem;
+    }
+  }
+
+  /* Points forts */
+  .section--points-forts .section-title {
+    margin-bottom: 3.5rem;
+  }
+  .points-forts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  @media (max-width: 768px) {
+    .section--points-forts .section-title {
+      margin-bottom: 2rem;
+    }
+    .points-forts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .point-fort {
+      padding: 1.25rem 0.75rem;
+      min-height: 100px;
+    }
+    .point-fort-icon :global(svg) {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+    .point-fort-label {
+      font-size: 0.9375rem;
+    }
+  }
+  .point-fort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: white;
+    box-shadow: 0 4px 20px rgba(44, 37, 32, 0.08);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  }
+  .point-fort:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(44, 37, 32, 0.12);
+  }
+  .point-fort-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-terracotta);
+  }
+  .point-fort-icon :global(svg) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .point-fort-label {
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+  .points-forts-cta {
+    text-align: center;
+    margin: 2rem 0 0;
+  }
+  .points-forts-link {
+    font-weight: 500;
+    color: var(--color-terracotta);
+    text-decoration: none;
+    transition: color var(--transition-smooth);
+  }
+  .points-forts-link:hover {
+    color: var(--color-terracotta-dark);
+    text-decoration: underline;
+  }
+
+  /* Galerie aperçu */
+  .galerie-apercu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 900px) {
+    .galerie-apercu {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+  .galerie-apercu img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+    transition: transform var(--transition-smooth);
+  }
+  .galerie-apercu img:hover {
+    transform: scale(1.02);
+  }
+  .section-cta {
+    text-align: center;
+    margin: 0;
+  }
+  .link-arrow {
+    font-weight: 600;
+    color: var(--color-terracotta);
+    text-decoration: none;
+  }
+  .link-arrow:hover {
+    text-decoration: underline;
+  }
+  .link-arrow:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Témoignages */
+  .temoignages-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2rem;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+  .temoignage blockquote {
+    margin: 0;
+    padding: 1.75rem;
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 20px rgba(44, 37, 32, 0.08);
+    transition: box-shadow var(--transition-smooth);
+  }
+  .temoignage blockquote:hover {
+    box-shadow: 0 12px 32px rgba(44, 37, 32, 0.12);
+  }
+  .temoignage p {
+    font-style: italic;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem;
+    line-height: 1.6;
+  }
+  .temoignage footer {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+  }
+  .temoignage--expandable .temoignage__text {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .temoignage--expandable.is-expanded .temoignage__text {
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+    overflow: visible;
+  }
+  .temoignage__voir-plus {
+    margin-top: 0.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-terracotta);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .temoignage__voir-plus:hover {
+    color: var(--color-terracotta-dark);
+  }
+  .temoignage__voir-plus:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+  .temoignage--expandable.is-expanded .temoignage__voir-plus {
+    margin-top: 0.75rem;
+  }
+  .temoignage--expandable .temoignage__voir-plus + footer {
+    margin-top: 0.75rem;
+  }
+  @media (max-width: 768px) {
+    .temoignages-list {
+      gap: 1.5rem;
+    }
+    .temoignage blockquote {
+      padding: 1.25rem 1rem;
+    }
+    .temoignage p {
+      font-size: 0.9375rem;
+    }
+    .link-arrow {
+      display: inline-block;
+      padding: 0.5rem 0;
+      min-height: 44px;
+      line-height: 1.4;
+    }
+  }
+
+  /* CTA final */
+  .section--cta {
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+  }
+  .cta-final {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cta-final__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+  .cta-final__text {
+    font-size: 1.0625rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+  .cta-final__btn {
+    margin-top: 0.25rem;
+  }
+</style>

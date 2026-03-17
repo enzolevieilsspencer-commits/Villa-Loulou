@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="La Villa — Villa avec piscine Marrakech | Villa Loulou"
+  description="Découvrez Villa Loulou : 4 chambres, 4 salles de bain, piscine privée, hammam et jardin. Villa privatisée à Marrakech, vue sur l'Atlas, proche Beldi Country Club."
+>
+  <!-- 1. Bannière demi-hauteur -->
+  <section class="page-banner" aria-labelledby="banner-title">
+    <div class="page-banner-bg">
+      <img
+        src="/images/villa-marrakech-facade-1.webp"
+        alt="Façade de la Villa Loulou à Marrakech"
+        width="1920"
+        height="600"
+        fetchpriority="high"
+      />
+      <span class="page-banner-overlay" aria-hidden="true" />
+    </div>
+    <div class="page-banner-content">
+      <h1 id="banner-title" class="page-banner-title">La Villa</h1>
+      <p class="page-banner-subtitle">Une demeure de caractère au cœur de Marrakech</p>
+    </div>
+  </section>
+
+  <!-- 2. Présentation -->
+  <section class="section" aria-labelledby="presentation-title">
+    <div class="container">
+      <h2 id="presentation-title" class="section-title">Présentation</h2>
+      <div class="prose">
+        <p>
+          Villa Loulou est une propriété de standing qui allie l'authenticité marocaine et le confort contemporain. Architecture soignée, matériaux nobles et espaces généreux : salon lumineux, cuisine équipée, quatre chambres et quatre salles de bains pour accueillir familles ou groupes d'amis dans les meilleures conditions.
+        </p>
+        <p>
+          Le jardin et la terrasse prolongent les lieux de vie à l'extérieur, autour de la piscine privée et des espaces de détente. La vue sur les montagnes de l'Atlas et la proximité immédiate du Beldi Country Club font de cette villa une adresse privilégiée pour un séjour à Marrakech.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Les espaces -->
+  <section class="section section--espaces" aria-labelledby="espaces-title">
+    <div class="container">
+      <h2 id="espaces-title" class="section-title">Les espaces</h2>
+      <ul class="espaces-grid">
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-salon-1.webp" alt="Salon de la Villa Loulou" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Salon</h3>
+        </li>
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-cuisine-1.webp" alt="Cuisine équipée" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Cuisine</h3>
+        </li>
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-chambre-1.webp" alt="Chambre 1" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Chambres</h3>
+        </li>
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-chambre-2.webp" alt="Chambre 2" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Chambres</h3>
+        </li>
+        <li class="espace-card espace-card--wide">
+          <img src="/images/villa-marrakech-piscine-1.webp" alt="Piscine chauffée de la villa" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Piscine</h3>
+        </li>
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-terrasse-1.webp" alt="Terrasse" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Terrasse</h3>
+        </li>
+        <li class="espace-card">
+          <img src="/images/villa-marrakech-sdb-1.webp" alt="Salle de bain" width="1200" height="800" loading="lazy" />
+          <h3 class="espace-card-title">Salle de bain</h3>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Galerie complète (lightbox à venir) -->
+  <section class="section" aria-labelledby="galerie-title">
+    <div class="container">
+      <h2 id="galerie-title" class="section-title">Galerie</h2>
+      <div class="galerie-grid" role="list">
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <a href={`/images/villa-marrakech-galerie-${i}.webp`} class="galerie-item" role="listitem">
+            <img
+              src={`/images/villa-marrakech-galerie-${i}.webp`}
+              alt={`Villa Loulou Marrakech — photo ${i}`}
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Équipements -->
+  <section class="section section--equipements" aria-labelledby="equipements-title">
+    <div class="container">
+      <h2 id="equipements-title" class="section-title">Équipements</h2>
+      <div class="equipements-grid">
+        <div class="equipements-cat">
+          <h3>Confort</h3>
+          <ul>
+            <li>Climatisation</li>
+            <li>WiFi gratuit</li>
+            <li>Réception 24h/24</li>
+            <li>Serviettes et linge de lit fournis</li>
+            <li>Articles de toilette gratuits</li>
+          </ul>
+        </div>
+        <div class="equipements-cat">
+          <h3>Extérieur & Piscine</h3>
+          <ul>
+            <li>Piscine extérieure privée</li>
+            <li>Jardin</li>
+            <li>Terrasse</li>
+            <li>Parking privé gratuit</li>
+          </ul>
+        </div>
+        <div class="equipements-cat">
+          <h3>Intérieur</h3>
+          <ul>
+            <li>Hammam</li>
+            <li>Cuisine équipée (réfrigérateur, machine à café)</li>
+            <li>1 salon · 1 cuisine · 4 chambres · 4 salles de bains</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Localisation -->
+  <section class="section section--localisation" aria-labelledby="localisation-title">
+    <div class="container">
+      <h2 id="localisation-title" class="section-title">Localisation</h2>
+      <p class="localisation-intro">Villa Loulou — Marrakech, vue sur l'Atlas. Distances :</p>
+      <ul class="distances-list">
+        <li>Aéroport Marrakech-Ménara : 6 km</li>
+        <li>Jardins de la Ménara : 8,2 km</li>
+        <li>Place Jemaa el-Fna : 8,3 km</li>
+        <li>Beldi Country Club : proximité immédiate</li>
+      </ul>
+      <div class="map-wrapper">
+        <iframe
+          title="Localisation de la Villa Loulou à Marrakech"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-8.0%2C31.6%2C-7.9%2C31.7&layer=mapnik&marker=31.65,-7.95"
+          width="100%"
+          height="400"
+          style="border:0; border-radius: 0.25rem;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        />
+      </div>
+      <p class="section-cta">
+        <a href="/contact/" class="btn btn-primary">Nous contacter</a>
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section {
+    padding: 4rem 0;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+
+  .page-banner {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .page-banner-bg {
+    position: absolute;
+    inset: 0;
+  }
+  .page-banner-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .page-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 37, 32, 0.4);
+  }
+  .page-banner-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 1.5rem;
+  }
+  .page-banner-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 400;
+    color: white;
+    margin: 0 0 0.5rem;
+  }
+  .page-banner-subtitle {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .prose {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+  .prose p {
+    margin: 0 0 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
+  .espaces-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .espace-card--wide {
+    grid-column: 1 / -1;
+  }
+  .espace-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+  .espace-card--wide img {
+    height: 400px;
+  }
+  .espace-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0.5rem 0 0;
+    color: var(--color-text-primary);
+  }
+  @media (max-width: 640px) {
+    .espaces-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .galerie-item {
+    display: block;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  .galerie-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+  }
+  .galerie-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .equipements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+  .equipements-cat h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem;
+  }
+  .equipements-cat ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .equipements-cat li {
+    padding: 0.25rem 0;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .localisation-intro {
+    text-align: center;
+    margin: 0 0 1rem;
+    color: var(--color-text-secondary);
+  }
+  .distances-list {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    text-align: center;
+  }
+  .distances-list li {
+    padding: 0.25rem 0;
+    color: var(--color-text-primary);
+  }
+  .map-wrapper {
+    margin-bottom: 2rem;
+  }
+  .section-cta {
+    text-align: center;
+    margin: 0;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-terracotta);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0.25rem;
+  }
+  .btn:hover {
+    background: var(--color-terracotta-dark);
+  }
+</style>

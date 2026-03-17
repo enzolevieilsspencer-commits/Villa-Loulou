@@ -10,6 +10,9 @@ interface Props {
   headerVariant?: 'light' | 'dark';
 }
 const { title, description = '', headerVariant = 'dark' } = Astro.props;
+const baseUrl = Astro.site?.toString().replace(/\/$/, '') ?? Astro.url.origin;
+const canonicalUrl = `${baseUrl}${Astro.url.pathname}`;
+const ogImage = `${baseUrl}/og/og-image-1200x630.png`;
 ---
 <!doctype html>
 <html lang="fr">
@@ -19,7 +22,24 @@ const { title, description = '', headerVariant = 'dark' } = Astro.props;
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
     <link rel="icon" href="/favicon.ico?v=3" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Villa Loulou" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Villa Loulou" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
   </head>
   <body>

@@ -1,0 +1,104 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  locale="fr"
+  title="Politique de confidentialité — Villa Loulou"
+  description="Politique de confidentialité et protection des données personnelles du site Villa Loulou Marrakech."
+>
+  <section class="section">
+    <div class="container container--narrow legal-prose">
+      <h1 class="page-title">Politique de confidentialité</h1>
+      <p class="legal-intro">
+        Cette politique décrit comment Villa Loulou collecte et traite les données personnelles que vous nous communiquez, notamment via le formulaire de contact.
+      </p>
+
+      <h2 id="responsable">1. Responsable du traitement</h2>
+      <p>
+        Le responsable du traitement des données est :<br />
+        [Même identification que l'éditeur du site — voir <a href="/mentions-legales/">Mentions légales</a>]
+      </p>
+
+      <h2 id="donnees-collectees">2. Données collectées</h2>
+      <p>
+        Via le formulaire de contact, nous pouvons recueillir : nom, adresse email, numéro de téléphone, dates de séjour souhaitées, nombre de voyageurs et le contenu de votre message. Ces données sont fournies volontairement par vous.
+      </p>
+
+      <h2 id="finalite">3. Finalité et base légale</h2>
+      <p>
+        Ces données sont utilisées uniquement pour répondre à vos demandes (devis, réservation, questions) et, le cas échéant, pour gérer votre séjour. Le traitement repose sur votre consentement (envoi du formulaire) et sur l'exécution de mesures précontractuelles ou contractuelles.
+      </p>
+
+      <h2 id="duree">4. Durée de conservation</h2>
+      <p>
+        Les données sont conservées pendant la durée nécessaire au traitement de votre demande, puis pour une période raisonnable pour les obligations légales et comptables (par exemple 3 ans à compter du dernier contact, sauf obligation légale plus longue).
+      </p>
+
+      <h2 id="destinataires">5. Destinataires</h2>
+      <p>
+        Les données sont destinées uniquement au responsable du site et aux personnes habilitées à traiter les demandes (gestion de la villa, réservations). Elles ne sont pas vendues ni cédées à des tiers à des fins commerciales.
+      </p>
+
+      <h2 id="droits">6. Vos droits</h2>
+      <p>
+        Vous disposez d'un droit d'accès, de rectification, d'effacement et, le cas échéant, de limitation du traitement et de portabilité de vos données. Vous pouvez également vous opposer au traitement ou retirer votre consentement. Pour exercer ces droits ou pour toute question, contactez-nous à l'adresse indiquée dans les <a href="/mentions-legales/">mentions légales</a>. Vous avez le droit d'introduire une réclamation auprès de la CNIL (ou de l'autorité de contrôle de votre pays).
+      </p>
+
+      <h2 id="securite">7. Sécurité</h2>
+      <p>
+        Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données contre tout accès non autorisé, perte ou altération.
+      </p>
+
+      <h2 id="modifications">8. Modifications</h2>
+      <p>
+        Cette politique peut être mise à jour. La date de dernière mise à jour sera indiquée ci-dessous. Nous vous invitons à la consulter régulièrement.
+      </p>
+      <p class="legal-updated">
+        Dernière mise à jour : [JJ/MM/AAAA]
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container { max-width: 75rem; margin: 0 auto; padding: 0 1.5rem; }
+  .container--narrow { max-width: 40rem; }
+  .section { padding: 4rem 0; }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+    font-weight: 400;
+    margin: 0 0 1.5rem;
+    color: var(--color-text-primary);
+  }
+  .legal-prose h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 2rem 0 0.75rem;
+    scroll-margin-top: 2rem;
+  }
+  .legal-prose h2:first-of-type { margin-top: 0; }
+  .legal-prose p {
+    margin: 0 0 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: 0.9375rem;
+  }
+  .legal-prose a {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+  }
+  .legal-prose a:hover {
+    color: var(--color-terracotta-dark);
+  }
+  .legal-intro {
+    margin-bottom: 1.5rem;
+  }
+  .legal-updated {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+</style>
