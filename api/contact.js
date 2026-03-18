@@ -19,6 +19,13 @@ function escapeHtml(str) {
 
 function buildEmailHtml(data) {
   const { nom, email, telephone, dates, date_arrivee, date_depart, voyageurs, message } = data;
+  const siteUrl = (() => {
+    const from = process.env.RESEND_FROM || '';
+    const domain = from.includes('@') ? from.split('@')[1] : '';
+    return domain ? `https://${domain}` : 'https://villa-loulou.com';
+  })();
+  const logoPath = process.env.CONTACT_EMAIL_LOGO_PATH || '/images/logo-tortue.png';
+  const logoUrl = `${siteUrl}${logoPath}`;
   const row = (label, value) =>
     value
       ? `
@@ -46,6 +53,13 @@ function buildEmailHtml(data) {
           <!-- En-tête -->
           <tr>
             <td style="background-color: #b8543a; padding: 28px 32px; border-radius: 12px 12px 0 0; text-align: center;">
+              <img
+                src="${logoUrl}"
+                alt="Logo tortue"
+                width="56"
+                height="56"
+                style="display: block; margin: 0 auto 10px auto; border-radius: 12px;"
+              />
               <p style="margin: 0; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,255,255,0.9); font-weight: 300;">Villa</p>
               <p style="margin: 4px 0 0; font-size: 26px; letter-spacing: 0.05em; color: #f5f1eb; font-weight: 400;">Loulou</p>
               <p style="margin: 12px 0 0; font-size: 13px; color: rgba(255,255,255,0.85);">Nouveau message depuis le site</p>

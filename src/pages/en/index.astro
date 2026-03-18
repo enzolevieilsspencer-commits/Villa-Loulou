@@ -10,6 +10,20 @@ const locale = 'en';
 const t = getTranslations(locale);
 const labelVoirPlus = t('home.temoignagesVoirPlus');
 const labelVoirMoins = t('home.temoignagesVoirMoins');
+
+const baseUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://villa-loulou.com';
+const pageUrl = `${baseUrl}${Astro.url.pathname}`;
+const heroImageUrl = `${baseUrl}/images/Hero-section.jpg`;
+
+const telephone = '+212665485359';
+const email = 'contact@villa-loulou.com';
+const addressStreet = 'Route Sans Nom RÉSIDENCE OLIVERAIE DE CHRIFIA';
+const addressLocality = 'Marrakech';
+const postalCode = '40000';
+const addressCountry = 'MA';
+const geoLat = 31.56706;
+const geoLon = -8.03119;
+const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
 ---
 
 <Layout
@@ -21,14 +35,28 @@ const labelVoirMoins = t('home.temoignagesVoirMoins');
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LodgingBusiness",
+    "@id": `${pageUrl}#villa-loulou`,
     "name": "Villa Loulou",
-    "address": { "@type": "PostalAddress", "addressLocality": "Marrakech", "addressCountry": "MA" },
+    "url": pageUrl,
+    "image": heroImageUrl,
+    "telephone": telephone,
+    "email": email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": addressStreet,
+      "addressLocality": addressLocality,
+      "postalCode": postalCode,
+      "addressCountry": addressCountry
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": geoLat, "longitude": geoLon },
     "priceRange": "€€€",
     "amenityFeature": [
       "Piscine extérieure chauffée", "WiFi gratuit", "Climatisation", "Hammam",
       "Parking privé gratuit", "Petit déjeuner halal", "4 chambres", "4 salles de bains",
-      "Cuisine équipée", "Jardin", "Terrasse", "Navette aéroport"
-    ]
+      "Cuisine équipée", "Jardin", "Terrasse", "Navette aéroport",
+      "Next to Beldi Country Club", "6 km from the airport"
+    ],
+    "sameAs": [instagramUrl]
   })} />
 
   <!-- 1. Hero plein écran -->
