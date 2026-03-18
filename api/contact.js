@@ -73,8 +73,6 @@ function buildEmailHtml(data) {
                 ${row('Email', email)}
                 ${row('Téléphone', telephone)}
                 ${row('Dates de séjour', dates)}
-                ${row('Arrivée', date_arrivee)}
-                ${row('Départ', date_depart)}
                 ${row('Nombre de voyageurs', voyageurs)}
               </table>
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 8px;">
@@ -144,18 +142,14 @@ export default async function handler(req, res) {
 
   const from = process.env.RESEND_FROM;
   const subject =
-    dates && (date_arrivee || date_depart)
-      ? `Demande de réservation du ${date_arrivee || '…'} au ${date_depart || '…'} — ${nom}`
-      : dates
-        ? `Demande de réservation — ${dates} — ${nom}`
-        : `[Villa Loulou] Message de ${nom}`;
+    dates
+      ? `Demande de réservation — ${dates} — ${nom}`
+      : `[Villa Loulou] Message de ${nom}`;
   const lines = [
     `Nom : ${nom}`,
     `Email : ${email}`,
     telephone ? `Téléphone : ${telephone}` : null,
     dates ? `Dates : ${dates}` : null,
-    date_arrivee ? `Arrivée : ${date_arrivee}` : null,
-    date_depart ? `Départ : ${date_depart}` : null,
     voyageurs ? `Voyageurs : ${voyageurs}` : null,
     '',
     'Message :',
