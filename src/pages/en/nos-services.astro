@@ -8,6 +8,7 @@ import IconBroom from '~icons/mdi/broom';
 import IconChefHat from '~icons/mdi/chef-hat';
 import IconCart from '~icons/mdi/cart';
 import IconCar from '~icons/mdi/car-side';
+import IconSpa from '~icons/mdi/spa';
 
 const locale = 'en';
 const t = getTranslations(locale);
@@ -23,6 +24,7 @@ const servicesSupplement = [
   { icon: 'chef', titleKey: 'nosServices.supplementChefTitle', descKey: 'nosServices.supplementChefDesc' },
   { icon: 'cart', titleKey: 'nosServices.supplementCartTitle', descKey: 'nosServices.supplementCartDesc' },
   { icon: 'navette', titleKey: 'nosServices.supplementNavetteTitle', descKey: 'nosServices.supplementNavetteDesc' },
+  { icon: 'spa', titleKey: 'nosServices.supplementBienEtreTitle', descKey: 'nosServices.supplementBienEtreDesc' },
 ];
 
 const iconMap = {
@@ -33,6 +35,7 @@ const iconMap = {
   chef: IconChefHat,
   cart: IconCart,
   navette: IconCar,
+  spa: IconSpa,
 };
 
 const servicesPhotosInclus = [
@@ -52,6 +55,7 @@ const faqItems = [
   { qKey: 'nosServices.faq3Q', aKey: 'nosServices.faq3A' },
   { qKey: 'nosServices.faq4Q', aKey: 'nosServices.faq4A' },
   { qKey: 'nosServices.faq5Q', aKey: 'nosServices.faq5A' },
+  { qKey: 'nosServices.faq6Q', aKey: 'nosServices.faq6A' },
 ];
 ---
 
@@ -195,7 +199,22 @@ const faqItems = [
       gap: 1rem;
     }
     .services-cards--supplement {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    .section--supplement .service-card {
+      padding: 0.65rem 0.35rem;
+    }
+    .section--supplement .service-card-title {
+      font-size: 0.8125rem;
+    }
+    .section--supplement .service-card-desc {
+      font-size: 0.6875rem;
+      line-height: 1.35;
+    }
+    .section--supplement .service-card-icon :global(svg) {
+      width: 1.5rem;
+      height: 1.5rem;
     }
     .service-card {
       padding: 1.25rem 1rem;
@@ -263,10 +282,12 @@ const faqItems = [
     line-height: 1.5;
   }
   .services-cards--supplement {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 56rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 100%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
+    gap: 1rem;
   }
 
   .services-images {

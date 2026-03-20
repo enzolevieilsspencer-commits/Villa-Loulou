@@ -1,6 +1,6 @@
 # Villa Loulou — Site vitrine
 
-Site vitrine multilingue pour **Villa Loulou**, villa de charme à Marrakech (4 chambres, piscine, hammam, proche Beldi Country Club).
+Site vitrine multilingue pour **Villa Loulou**, villa de charme à Marrakech — résidence sécurisée avec gardien, 4 suites (chacune avec salle de bain et WC), piscine chauffée 14×4 m, jardin arboré 2600 m², proche Beldi Country Club.
 
 ## Stack
 

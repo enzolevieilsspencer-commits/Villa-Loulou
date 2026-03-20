@@ -45,7 +45,4 @@ export const SITE_IMAGES: string[] = [
   '/images/Douche4-2.jpg',
   '/images/Toilette-lavabo1.jpg',
   '/images/toilette-lavabo2.jpg',
-  '/images/hammam.jpg',
-  '/images/hammam1.png',
-  '/images/hammam2.png',
 ];

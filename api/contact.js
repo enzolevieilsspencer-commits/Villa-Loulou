@@ -89,7 +89,7 @@ function buildEmailHtml(data) {
           <tr>
             <td style="padding: 20px 32px 0; text-align: center;">
               <p style="margin: 0; font-size: 12px; color: #5c534a;">Villa Loulou — Marrakech</p>
-              <p style="margin: 4px 0 0; font-size: 11px; color: #9a4532;">Villa de charme · Piscine · Hammam · Beldi Country Club</p>
+              <p style="margin: 4px 0 0; font-size: 11px; color: #9a4532;">Villa de charme · Piscine · Beldi Country Club</p>
             </td>
           </tr>
         </table>

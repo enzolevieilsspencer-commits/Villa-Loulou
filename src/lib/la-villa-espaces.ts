@@ -45,8 +45,8 @@ export const espacesData: EspaceData[] = [
     labelKey: 'spaceChambre1',
     amenityKeys: ['amenityLitDouble', 'amenityClimatisation', 'amenityDressing', 'amenityLingeLit'],
     images: [
-      { src: '/images/Chambre1-1.jpg', alt: 'Chambre 1 Villa Loulou' },
-      { src: '/images/Chambre1-2.jpg', alt: 'Chambre 1 Villa Loulou' },
+      { src: '/images/Chambre1-1.jpg', alt: 'Suite 1 Villa Loulou' },
+      { src: '/images/Chambre1-2.jpg', alt: 'Suite 1 Villa Loulou' },
     ],
   },
   {
@@ -54,8 +54,8 @@ export const espacesData: EspaceData[] = [
     labelKey: 'spaceChambre2',
     amenityKeys: ['amenityLitDouble', 'amenityClimatisation', 'amenityDressing', 'amenityLingeLit'],
     images: [
-      { src: '/images/Chambre2-1.jpg', alt: 'Chambre 2 Villa Loulou' },
-      { src: '/images/Chambre2-2.jpg', alt: 'Chambre 2 Villa Loulou' },
+      { src: '/images/Chambre2-1.jpg', alt: 'Suite 2 Villa Loulou' },
+      { src: '/images/Chambre2-2.jpg', alt: 'Suite 2 Villa Loulou' },
     ],
   },
   {
@@ -63,9 +63,9 @@ export const espacesData: EspaceData[] = [
     labelKey: 'spaceChambre3',
     amenityKeys: ['amenityLitDouble', 'amenityClimatisation', 'amenityDressing', 'amenityLingeLit'],
     images: [
-      { src: '/images/Chambre3-1.jpg', alt: 'Chambre 3 Villa Loulou' },
-      { src: '/images/Chambre3-2.jpg', alt: 'Chambre 3 Villa Loulou' },
-      { src: '/images/Chambre3-3.jpg', alt: 'Chambre 3 Villa Loulou' },
+      { src: '/images/Chambre3-1.jpg', alt: 'Suite 3 Villa Loulou' },
+      { src: '/images/Chambre3-2.jpg', alt: 'Suite 3 Villa Loulou' },
+      { src: '/images/Chambre3-3.jpg', alt: 'Suite 3 Villa Loulou' },
     ],
   },
   {
@@ -73,9 +73,9 @@ export const espacesData: EspaceData[] = [
     labelKey: 'spaceChambre4',
     amenityKeys: ['amenityLitDouble', 'amenityClimatisation', 'amenityDressing', 'amenityLingeLit'],
     images: [
-      { src: '/images/Chambre4-1.jpg', alt: 'Chambre 4 Villa Loulou' },
-      { src: '/images/Chambre4-2.jpg', alt: 'Chambre 4 Villa Loulou' },
-      { src: '/images/Chambre4-3.jpg', alt: 'Chambre 4 Villa Loulou' },
+      { src: '/images/Chambre4-1.jpg', alt: 'Suite 4 Villa Loulou' },
+      { src: '/images/Chambre4-2.jpg', alt: 'Suite 4 Villa Loulou' },
+      { src: '/images/Chambre4-3.jpg', alt: 'Suite 4 Villa Loulou' },
     ],
   },
   {
@@ -146,16 +146,6 @@ export const espacesData: EspaceData[] = [
       { src: '/images/toilette-lavabo2.jpg', alt: 'Toilette lavabo Villa Loulou' },
     ],
   },
-  {
-    id: 'hammam',
-    labelKey: 'spaceHammam',
-    amenityKeys: ['amenityHammamTraditionnel', 'amenityEspaceDetente'],
-    images: [
-      { src: '/images/hammam.jpg', alt: 'Hammam Villa Loulou' },
-      { src: '/images/hammam1.png', alt: 'Hammam Villa Loulou' },
-      { src: '/images/hammam2.png', alt: 'Hammam Villa Loulou' },
-    ],
-  },
 ];
 
 const espaceById = Object.fromEntries(espacesData.map((e) => [e.id, e]));
@@ -165,7 +155,6 @@ export const viewsData = [
   { id: 'chambres', espaces: [espaceById['chambre-1']!, espaceById['chambre-2']!, espaceById['chambre-3']!, espaceById['chambre-4']!] },
   { id: 'sdb', espaces: [espaceById['sdb-1']!, espaceById['sdb-2']!, espaceById['sdb-3']!, espaceById['sdb-4']!] },
   { id: 'piscine', espaces: [espaceById['piscine']!] },
-  { id: 'hammam', espaces: [espaceById['hammam']!] },
   { id: 'jardin', espaces: [espaceById['jardin']!] },
   { id: 'cuisine', espaces: [espaceById['cuisine']!] },
   { id: 'toilettes', espaces: [espaceById['toilettes']!] },

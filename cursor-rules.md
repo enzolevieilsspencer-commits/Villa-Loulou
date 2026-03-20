@@ -13,24 +13,28 @@
 - Place Jemaa el-Fna : 8,3 km
 - Beldi Country Club : proximité immédiate
 
-**Capacité** : 4 chambres · 4 salles de bains · 1 salon · 1 cuisine équipée
+**Capacité** : 4 suites · 4 salles de bains et WC · 1 salon · 1 cuisine équipée
 
 **Équipements inclus** :
 
-- Piscine extérieure privée
-- Hammam
-- Jardin + Terrasse
-- Parking privé gratuit
+- Résidence sécurisée avec gardien
+- Piscine extérieure privée chauffée (14 × 4 m) avec volets roulants électriques
+- Jardin arboré de 2600 m² + Terrasse
+- Insert (cheminée) avec bois fourni
+- Parking privé gratuit sécurisé
 - WiFi gratuit
 - Climatisation
-- Cuisine équipée (réfrigérateur, machine à café)
+- Cuisine équipée
 - Serviettes et linge de lit fournis
-- Articles de toilette gratuits
+- Serviettes de piscine
+- Produits de toilette gratuits
+- Jeux de société
+- TV Home cinéma, plus de 400 chaînes
 - Réception 24h/24
 
 **Services inclus dans le séjour** :
 
-- Petit déjeuner halal servi sur place
+- Petit déjeuner servi sur place
 - Femme de ménage
 - Ping Pong
 
@@ -41,7 +45,7 @@
 - Courses
 
 **Mot-clé SEO racine** : villa Marrakech
-**Mots-clés secondaires** : villa Marrakech piscine, villa Marrakech 4 chambres, villa Marrakech Beldi Country Club, villa Marrakech petit déjeuner, villa Marrakech hammam
+**Mots-clés secondaires** : villa Marrakech piscine, villa Marrakech 4 suites, villa Marrakech Beldi Country Club, villa Marrakech petit déjeuner, villa Marrakech jardin
 
 ## 🔤 Logo & identité visuelle
 
@@ -180,12 +184,12 @@ Tu penses référencement à chaque ligne de code. Cela signifie :
 
 ```html
 <title>
-  Villa Marrakech 4 Chambres | Piscine Privée & Petit Déjeuner — Proche Beldi
+  Villa Marrakech 4 Suites | Piscine Privée & Petit Déjeuner — Proche Beldi
   Country Club
 </title>
 <meta
   name="description"
-  content="Villa 4 chambres à Marrakech avec piscine privée, hammam, petit déjeuner halal et vue sur l'Atlas. À 6 km de l'aéroport, 8 km de Jemaa el-Fna. Parking gratuit. Réservez dès maintenant."
+  content="Villa 4 suites à Marrakech avec salle de bain et WC, piscine privée, petit déjeuner et vue sur l'Atlas. À 6 km de l'aéroport, 8 km de Jemaa el-Fna. Parking privé gratuit sécurisé. Réservez dès maintenant."
 />
 ```
 
@@ -202,17 +206,21 @@ Tu penses référencement à chaque ligne de code. Cela signifie :
   },
   "priceRange": "€€€",
   "amenityFeature": [
-    "Piscine extérieure chauffée",
+    "Piscine extérieure privée chauffée (14 × 4 m) avec volets roulants électriques",
+    "Résidence sécurisée avec gardien",
     "WiFi gratuit",
     "Climatisation",
-    "Hammam",
-    "Parking privé gratuit",
-    "Petit déjeuner halal",
-    "4 chambres",
-    "4 salles de bains",
+    "Parking privé gratuit sécurisé",
+    "Petit déjeuner",
+    "4 suites avec salle de bain et WC",
     "Cuisine équipée",
-    "Jardin",
+    "Jardin arboré de 2600 m²",
     "Terrasse",
+    "Insert (cheminée) avec bois fourni",
+    "Serviettes de piscine",
+    "Produits de toilette gratuits",
+    "Jeux de société",
+    "TV Home cinéma, plus de 400 chaînes",
     "Navette aéroport"
   ]
 }
@@ -228,7 +236,7 @@ Tu penses référencement à chaque ligne de code. Cela signifie :
 
 1. **En-tête bannière demi-hauteur** — Photo façade ou vue générale (pas un hero plein écran), `<h1>` descriptif superposé
 2. **Présentation** — Description immersive de la villa (architecture, ambiance, matériaux)
-3. **Les espaces** — Salon, Chambres (X), Salle de bain, Cuisine, Terrasse, Piscine — avec photos
+3. **Les espaces** — Salon, Suites (X), Salle de bain, Cuisine, Terrasse, Piscine — avec photos
 4. **Galerie complète** — Lightbox accessible, lazy-load, alt descriptifs sur chaque photo
 5. **Équipements** — Liste complète structurée en catégories
 6. **Localisation** — Carte (embed Google Maps ou MapLibre), distances clés (Médina, aéroport)
@@ -384,7 +392,7 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 │  🏓 Ping Pong         🧹 Femme de ménage         │
 ├─────────────────────────────────────────────────┤
 │  APERÇU GALERIE                                 │
-│  [IMG salon 800×600] [IMG chambre] [IMG terrasse]│
+│  [IMG salon 800×600] [IMG suite] [IMG terrasse]│
 │                        → Voir toute la villa    │
 ├─────────────────────────────────────────────────┤
 │  EXTRAIT SERVICES                               │
@@ -421,7 +429,7 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 ├─────────────────────────────────────────────────┤
 │  LES ESPACES                                    │
 │  [IMG salon 1200×800]   [IMG cuisine 1200×800]  │
-│  [IMG chambre 1]        [IMG chambre 2]         │
+│  [IMG suite 1]         [IMG suite 2]           │
 │  [IMG piscine chauffée — pleine largeur]        │
 │  [IMG terrasse]         [IMG salle de bain]     │
 │                        7 photos · WebP          │
@@ -518,9 +526,9 @@ RESEND_API_KEY=re_xxxxxxxxxxxx
 | Page         | Zone                                                             | Format         | Nb         |
 | ------------ | ---------------------------------------------------------------- | -------------- | ---------- |
 | Accueil      | Hero extérieur + piscine                                         | 1920×1080 WebP | 1          |
-| Accueil      | Aperçu galerie (salon, chambre, terrasse)                        | 800×600 WebP   | 3          |
+| Accueil      | Aperçu galerie (salon, suite, terrasse)                        | 800×600 WebP   | 3          |
 | La Villa     | Bannière façade                                                  | 1920×600 WebP  | 1          |
-| La Villa     | Les espaces (salon, cuisine, ch.1, ch.2, piscine, terrasse, sdb) | 1200×800 WebP  | 7          |
+| La Villa     | Les espaces (salon, cuisine, s.1, s.2, piscine, terrasse, sdb)  | 1200×800 WebP  | 7          |
 | La Villa     | Galerie lightbox                                                 | 1200×800 WebP  | 8–15       |
 | Nos Services | Piscine close + table petit déj                                  | 800×600 WebP   | 2          |
 | Nos Services | Ambiance repas / art de vivre                                    | 1200×800 WebP  | 1          |

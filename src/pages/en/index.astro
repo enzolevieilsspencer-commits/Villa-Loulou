@@ -17,7 +17,7 @@ const heroImageUrl = `${baseUrl}/images/Hero-section.jpg`;
 
 const telephone = '+212665485359';
 const email = 'contact@villa-loulou.com';
-const addressStreet = 'Route Sans Nom RÉSIDENCE OLIVERAIE DE CHRIFIA';
+const addressStreet = 'RÉSIDENCE OLIVERAIE DE CHRIFIA';
 const addressLocality = 'Marrakech';
 const postalCode = '40000';
 const addressCountry = 'MA';
@@ -51,9 +51,14 @@ const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
     "geo": { "@type": "GeoCoordinates", "latitude": geoLat, "longitude": geoLon },
     "priceRange": "€€€",
     "amenityFeature": [
-      "Piscine extérieure chauffée", "WiFi gratuit", "Climatisation", "Hammam",
-      "Parking privé gratuit", "Petit déjeuner halal", "4 chambres", "4 salles de bains",
-      "Cuisine équipée", "Jardin", "Terrasse", "Navette aéroport",
+      "Piscine extérieure privée chauffée (14 × 4 m)",
+      "Résidence sécurisée avec gardien",
+      "WiFi gratuit", "Climatisation",
+      "Parking privé gratuit sécurisé", "Petit déjeuner", "4 suites avec salle de bain et WC",
+      "Cuisine équipée", "Jardin de 2600 m²", "Terrasse",
+      "Insert (cheminée) avec bois fourni", "Serviettes de piscine", "Produits de toilette gratuits",
+      "Jeux de société", "TV Home cinéma, plus de 400 chaînes",
+      "Navette aéroport",
       "Next to Beldi Country Club", "6 km from the airport"
     ],
     "sameAs": [instagramUrl]
@@ -99,6 +104,9 @@ const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
           <p class="accroche-text">
             {t('home.accrocheText')}
           </p>
+          <p class="accroche-disclaimer" role="note">
+            {t('home.accrocheDisclaimer')}
+          </p>
         </div>
       </div>
     </div>
@@ -137,7 +145,7 @@ const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
     <div class="container container--galerie">
       <h2 id="galerie-title" class="section-title">{t('home.galerieTitle')}</h2>
       <div class="galerie-apercu">
-        <img src="/images/hammam.jpg" alt="Hammam traditionnel de la Villa Loulou à Marrakech" width="800" height="600" loading="lazy" />
+        <img src="/images/Jardin1.jpg" alt="Jardin arboré de la Villa Loulou à Marrakech" width="800" height="600" loading="lazy" />
         <img src="/images/Piscine2.jpg" alt="Piscine et transats de la Villa Loulou" width="800" height="600" loading="lazy" />
         <img src="/images/Salon1.jpg" alt="Salon de la Villa Loulou à Marrakech" width="800" height="600" loading="lazy" />
       </div>
@@ -380,6 +388,16 @@ const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
     text-align: left;
     margin: 0;
   }
+  .accroche-disclaimer {
+    margin: 0.25rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-text-primary) 12%, transparent);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+    font-style: italic;
+    text-align: left;
+  }
   @media (max-width: 768px) {
     .hero-content {
       padding: 1.5rem 1rem;
@@ -414,6 +432,10 @@ const instagramUrl = 'https://www.instagram.com/nextenstudio_/';
     .accroche-text {
       text-align: center;
       font-size: 1.0625rem;
+    }
+    .accroche-disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
     }
   }
 
