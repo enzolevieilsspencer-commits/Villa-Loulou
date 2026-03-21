@@ -12,7 +12,7 @@ interface Props {
 const { title, description = '', headerVariant = 'dark' } = Astro.props;
 const baseUrl = Astro.site?.toString().replace(/\/$/, '') ?? Astro.url.origin;
 const canonicalUrl = `${baseUrl}${Astro.url.pathname}`;
-const ogImage = `${baseUrl}/og/og-image-1200x630.png`;
+const ogImage = `${baseUrl}/og/og-image-1200x630.png?v=7`;
 ---
 <!doctype html>
 <html lang="fr">
@@ -20,9 +20,9 @@ const ogImage = `${baseUrl}/og/og-image-1200x630.png`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-    <link rel="icon" href="/favicon.ico?v=3" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
+    <link rel="icon" href="/favicon.ico?v=7" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
 

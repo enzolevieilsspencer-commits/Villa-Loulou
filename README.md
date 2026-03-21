@@ -53,6 +53,9 @@ npm run build
 
 # Prévisualisation du build
 npm preview
+
+# Régénérer favicon.ico, apple-touch-icon et images OG depuis public/favicon.svg
+npm run assets:brand
 ```
 
 ## Pages

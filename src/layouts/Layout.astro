@@ -17,8 +17,8 @@ const pathname = Astro.url.pathname;
 const pathWithoutLocale = pathname.replace(/^\/(en|it|es|ar)(?=\/|$)/, '') || '/';
 const baseUrl = Astro.site?.toString().replace(/\/$/, '') ?? Astro.url.origin;
 const canonicalUrl = `${baseUrl}${pathname}`;
-const ogImage = `${baseUrl}/og/og-image-1200x630.png`;
-const ogImageSquare = `${baseUrl}/og/og-image-1200x1200.png`;
+const ogImage = `${baseUrl}/og/og-image-1200x630.png?v=7`;
+const ogImageSquare = `${baseUrl}/og/og-image-1200x1200.png?v=7`;
 ---
 <!doctype html>
 <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -26,9 +26,9 @@ const ogImageSquare = `${baseUrl}/og/og-image-1200x1200.png`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
-    <link rel="icon" href="/favicon.ico?v=3" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
+    <link rel="icon" href="/favicon.ico?v=7" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
 
